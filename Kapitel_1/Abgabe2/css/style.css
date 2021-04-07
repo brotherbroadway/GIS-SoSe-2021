@@ -146,6 +146,17 @@ p {
     font-weight: bold;
 }
 
+q {
+    color: rgb(160,160,160);
+    text-align: center;
+    text-shadow: 0px 0px 10px black;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 16pt;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
 ul {
     color: rgb(175,175,175);
     list-style-type: none;
@@ -193,6 +204,16 @@ ul {
     transition: 1s ease-in-out 0s;
 }
 
+#desc_aboutme b {
+    color: rgb(220,220,210);
+}
+
+#desc_aboutme b:hover {
+    color: deepskyblue;
+    font-size: 16pt;
+    transition: 1s ease-in-out 0s;
+}
+
 #baldi img {
     position: fixed;
     top: 97%;
@@ -207,7 +228,7 @@ ul {
     border: 3px solid deepskyblue;
     border-radius: 15px;
     box-shadow: 0px 0px 15px white;
-    margin-top: 140px;
+    margin-top: 120px;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -224,11 +245,24 @@ ul {
     padding: 2%;
 }
 
+#quoteland {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+#quoteland abbr:hover {
+    color: deepskyblue;
+    transition: 1s ease-in-out 0s;
+}
+
 form { /* Formular auf Kontakt-Seite */
     display: grid;
     background-color: rgb(34,34,34);
     width: 370px;
-    margin-top: 45px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
