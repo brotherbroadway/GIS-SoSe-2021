@@ -56,6 +56,16 @@ body {
     width: 50%;
 }
 
+#desc b {
+    color: rgb(220,220,210);
+}
+
+#desc b:hover {
+    color: deepskyblue;
+    font-size: 18.5pt;
+    transition: 1s ease-in-out 0s;
+}
+
 #works {
     display: grid;
     background-color: rgb(15,15,15);
