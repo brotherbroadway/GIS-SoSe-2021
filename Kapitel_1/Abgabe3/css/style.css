@@ -21,10 +21,21 @@ body {
     width: 50px;
     padding-left: 30px;
     padding-top: 15px;
+    opacity: 0.9;
+    transition: 0.25s ease-in-out;
+}
+
+#nav img:hover {
+    transition: 0.25s ease-in-out;
+    opacity: 1;
+}
+
+#nav a {
+    transition: 0.25s ease-in-out;
 }
 
 #nav a:hover {
-    transition: 0.5s ease-in-out;
+    transition: 0.25s ease-in-out;
 }
 
 .buttons a {
@@ -35,6 +46,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     padding: 16px;
+
 }
 
 .buttons a:hover {
@@ -61,6 +73,7 @@ body {
 
 #desc b {
     color: rgb(220,220,210);
+    transition: 1s ease-in-out 0s;
 }
 
 #desc b:hover {
@@ -209,6 +222,7 @@ ul {
 
 #desc_aboutme i {
     color: rgb(240,240,210);
+    transition: 1s ease-in-out 0s;
 }
 
 #desc_aboutme i:hover {
@@ -219,6 +233,7 @@ ul {
 
 #desc_aboutme b {
     color: rgb(220,220,210);
+    transition: 1s ease-in-out 0s;
 }
 
 #desc_aboutme b:hover {
@@ -256,6 +271,13 @@ ul {
 #social_bubbles img {
     width: 15%;
     padding: 2%;
+    opacity: 0.6;
+    transition: 0.25s ease-in-out 0s;
+}
+
+#social_bubbles img:hover {
+    opacity: 1;
+    transition: 0.25s ease-in-out 0s;
 }
 
 #quoteland {
@@ -264,6 +286,7 @@ ul {
     margin-left: auto;
     margin-right: auto;
     width: 20%;
+    transition: 1s ease-in-out 0s;
 }
 
 #quoteland abbr:hover {
