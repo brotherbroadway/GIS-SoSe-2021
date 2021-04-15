@@ -1,0 +1,524 @@
+body {
+    background-image: url("../bg.png");
+    background-repeat: repeat;
+    background-size: 3%;
+    font-family: sans-serif;
+}
+
+#nav {
+    background-color: deepskyblue;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    box-shadow: 0px 0px 20px black;
+}
+
+#nav img {
+    float: left;
+    display: inline;
+    position: fixed;
+    width: 50px;
+    padding-left: 30px;
+    padding-top: 15px;
+    opacity: 0.9;
+    transition: 0.25s ease-in-out;
+}
+
+#nav img:hover {
+    transition: 0.25s ease-in-out;
+    opacity: 1;
+}
+
+#nav a {
+    transition: 0.25s ease-in-out;
+}
+
+#nav a:hover {
+    transition: 0.25s ease-in-out;
+}
+
+.buttons a {
+    float: right;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 16px;
+}
+
+.buttons abbr {
+    text-decoration: none;
+    transition: 0s;
+}
+
+.nothere a {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.nothere a:hover {
+    background-color: rgb(32, 32, 34);
+    color: rgb(58, 182, 228);
+}
+
+.urhere a {
+    background-color: rgb(32, 32, 34);
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.urhere a:hover {
+    background-color: deepskyblue;
+    color: rgb(32, 32, 34);
+    text-shadow: 0px 0px 2px rgb(32, 32, 34);
+}
+
+#desc {
+    display: block;
+    background-color: rgb(34,34,34);
+    border: 3px solid deepskyblue;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px white;
+    margin-top: 110px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    width: 800px;
+}
+
+#desc b {
+    color: rgb(220,220,210);
+    transition: 1s ease-in-out 0s;
+}
+
+#desc b:hover {
+    color: deepskyblue;
+    font-size: 18.5pt;
+    transition: 1s ease-in-out 0s;
+}
+
+#works {
+    display: grid;
+    background-color: rgb(15,15,15);
+    border: 5px inset deepskyblue;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px deepskyblue;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 200px;
+}
+
+.media {
+    display: grid;
+    background-color: rgb(34,34,34);
+    border: 3px solid deepskyblue;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    width: 800px;
+}
+
+.media img {
+    display: grid;
+    border: 3px solid dodgerblue;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.media video {
+    border: 3px solid dodgerblue;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+#back_to {
+    position: fixed;
+    top: 97%;
+    right: 0;
+    left: 98.5%;
+}
+
+#top {
+    margin-top: -20px;
+}
+
+h1 {
+    color: white;
+    text-shadow: 3px 3px 3px black;
+    text-align: center;
+    padding-left: 310px;
+}
+
+h2 {
+    color: rgb(206,203,193);
+    text-shadow: 0px 0px 10px black;
+    text-align: center;
+}
+
+h3 {
+    color: rgb(220,220,200);
+    text-shadow: 0px 0px 10px black;
+    text-align: center;
+    display: block;
+    background-color:deepskyblue;
+    border: 5px inset rgb(34,34,34);
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px deepskyblue;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 90px;
+}
+
+p {
+    color: rgb(175,175,160);
+    text-align: center;
+    text-shadow: 0px 0px 10px black;
+    font-weight: bold;
+}
+
+q {
+    color: rgb(160,160,160);
+    text-align: center;
+    text-shadow: 0px 0px 10px black;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 16pt;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+ul {
+    color: rgb(175,175,175);
+    list-style-type: none;
+}
+
+#portrait_aboutme img { /* In 'About me' page */
+    float: left;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    top: 200px;
+    left: 50%;
+    background-color: rgb(15,15,15);
+    border: 5px inset deepskyblue;
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px white;
+    margin-right: 12.5%;
+    width: 120px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#desc_aboutme {
+    display: grid;
+    background-color: rgb(34,34,34);
+    border: 3px solid deepskyblue;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px white;
+    margin-top: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    width: 800px;
+}
+
+#desc_aboutme i {
+    color: rgb(240,240,210);
+    transition: 1s ease-in-out 0s;
+}
+
+#desc_aboutme i:hover {
+    color: deepskyblue;
+    font-size: 16pt;
+    transition: 1s ease-in-out 0s;
+}
+
+#desc_aboutme b {
+    color: rgb(220,220,210);
+    transition: 1s ease-in-out 0s;
+}
+
+#desc_aboutme b:hover {
+    color: deepskyblue;
+    font-size: 16pt;
+    transition: 1s ease-in-out 0s;
+}
+
+#baldi img {
+    position: fixed;
+    top: 97%;
+    right: 0;
+    left: 98.5%;
+    width: 30px;
+}
+
+#social_bubbles { /* Contacts & etc. bubble links */
+    display: block;
+    background-color: rgb(34,34,34);
+    border: 3px solid deepskyblue;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px white;
+    margin-top: 120px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 800px;
+}
+
+#social_bubbles img {
+    width: 18.5%;
+    padding: 3%;
+    opacity: 0.6;
+    transition: 0.25s ease-in-out 0s;
+}
+
+#social_bubbles img:hover {
+    opacity: 1;
+    transition: 0.25s ease-in-out 0s;
+}
+
+#quoteland {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    transition: 1s ease-in-out 0s;
+}
+
+#quoteland abbr:hover {
+    color: deepskyblue;
+    transition: 1s ease-in-out 0s;
+}
+
+form { /* Formular auf Kontakt-Seite */
+    display: grid;
+    background-color: rgb(34,34,34);
+    width: 370px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 3px solid deepskyblue;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px white;
+  }
+  label {
+    display: block;
+    color: rgb(206,203,193);
+    text-shadow: 0px 0px 10px black;
+    font-weight: bold;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+  input#absender,
+  textarea {
+    width: 300px;
+    border: 1px solid rgb(175,175,175);
+    margin-bottom: 1em;
+  }
+  textarea {
+    height: 7em;
+  }
+  input,
+  textarea {
+      background-color: rgb(220, 220, 220);
+  }
+  input:focus,
+  textarea:focus {
+    background-color: rgb(200,200,200);
+  } /* Ende Formular */
+
+  @media screen and (max-width: 600px) { /* Mobile screen */
+
+    h1 {
+        padding-left: 16%;
+    }
+
+    #desc {
+        margin-left: 40px;
+        width: 80%;
+    }
+
+    p {
+        font-size: 14pt;
+    }
+
+    h3 {
+        font-size: 16pt;
+        width: 90px;
+    }
+
+    .media {
+        width: 90%;
+    }
+
+    .media img {
+        margin-left: 0;
+    }
+
+    .media video {
+        margin-left: 0;
+    }
+
+    #back_to {
+        left: 94.6%;
+        top: 96.8%;
+    }
+
+    #back_to img {
+        width: 28px;
+    }
+
+    #portrait_aboutme img {
+        float: none;
+        position: relative;
+        transform: translateX(-50%) translateY(-100%);
+        top: 875px;
+        width: 12.5%;
+    }
+
+    #desc_aboutme {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2.5%;
+        padding-top: 0px;
+        padding-bottom: 20px;
+        width: 70%;
+    }
+
+    #baldi img {
+        left: 96%;
+        top: 96.5%;
+    }
+
+    #social_bubbles {
+        margin-top: 140px;
+        width: 75%;
+    }
+
+    #social_bubbles img {
+        width: 17%;
+    }
+
+    #quoteland {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+
+    form {
+        margin-top: 50px;
+    }
+
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 601px) { /* Tablet screen */
+
+    h1 {
+        padding-left: 25%;
+    }
+
+    #desc {
+        width: 75%;
+    }
+
+    p {
+        font-size: 16pt;
+    }
+
+    h3 {
+        font-size: 16pt;
+        width: 90px;
+    }
+
+    .media {
+        width: 81%;
+    }
+
+    #back_to {
+        left: 95.5%;
+        top: 95.2%;
+    }
+
+    #back_to img {
+        width: 40px;
+    }
+
+    #portrait_aboutme img {
+        float: none;
+        position: relative;
+        transform: translateX(-50%) translateY(-75%);
+        top: 850px;
+        width: 10%;
+    }
+
+    #desc_aboutme {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -3.5%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-bottom: 20px;
+        width: 70%;
+    }
+
+    #desc_aboutme h2 {
+        font-size: 24pt;
+    }
+
+    #desc_aboutme p {
+        font-size: 14pt;
+    }
+
+    #baldi img {
+        left: 96.8%;
+        top: 95.5%;
+        width: 40px;
+    }
+
+    #social_bubbles {
+        width: 70%;
+    }
+
+    #social_bubbles img {
+        width: 17%;
+    }
+
+    #quoteland {
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+    }
+
+    form {
+        margin-top: 30px;
+    }
+
+  }
