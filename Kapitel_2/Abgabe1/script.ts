@@ -122,7 +122,7 @@ while (initNumber <= 100) {
 console.log("-- Aufgabe 5c -- \nDas Ergebnis ist " + finalNumber + "!");
 
 // - 5d -
-console.log("-- Aufgabe 5d --")
+console.log("-- Aufgabe 5d --");
 for (let i: number = 0; i < 10; i++) {
     let randomNumber: number = Math.floor(Math.random() * 100); // used Math.floor() so it doesn't spit out a super long number
     console.log((i + 1) + "te Zahl ist " + randomNumber + "!");
