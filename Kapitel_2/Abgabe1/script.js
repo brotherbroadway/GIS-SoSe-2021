@@ -89,148 +89,151 @@ Lokale Variablen können nur in einer Funktion benutzt werden und werden außerh
 "Normale" Variablen können nur kleine Informationsstücke in sich behalten,
 während Funktionen diese Informationen dann komplex in sich bearbeiten können.
 */
-console.log("-- Aufgaben 1-4 sind auskommentiert --");
-// --- Aufgabe 5 ---
-// - 5a -
-function multiply(_x, _y) {
-    let result;
-    result = _x * _y;
-    return result;
-}
-console.log("-- Aufgabe 5a -- \nDas Ergebnis ist " + multiply(8, 6) + "!");
-// - 5b -
-function max(_num1, _num2) {
-    let maxResult;
-    maxResult = Math.max(_num1, _num2);
-    return maxResult;
-}
-console.log("-- Aufgabe 5b -- \nDas Ergebnis ist " + max(22, 64) + "!");
-// - 5c -
-let initNumber = 1;
-let finalNumber = 0;
-while (initNumber <= 100) {
-    finalNumber = finalNumber + initNumber;
-    initNumber++;
-}
-console.log("-- Aufgabe 5c -- \nDas Ergebnis ist " + finalNumber + "!");
-// - 5d -
-console.log("-- Aufgabe 5d --");
-for (let i = 0; i < 10; i++) {
-    let randomNumber = Math.floor(Math.random() * 100); // used Math.floor() so it doesn't spit out a super long number
-    console.log((i + 1) + "te Zahl ist " + randomNumber + "!");
-}
-// - 5e -
-function factorial(_myNumber) {
-    let facNumber = 1;
-    let givenNumber = _myNumber;
-    if (_myNumber < 1) {
-        return 1;
+var Abgabe2_1Aufgabe1;
+(function (Abgabe2_1Aufgabe1) {
+    console.log("-- Aufgaben 1-4 sind auskommentiert --");
+    // --- Aufgabe 5 ---
+    // - 5a -
+    function multiply(_x, _y) {
+        let result;
+        result = _x * _y;
+        return result;
     }
-    else {
-        for (let i = 1; i <= _myNumber; i++) {
-            facNumber = facNumber * givenNumber;
-            givenNumber--; // starts using highest given number first and goes down to 1
-        }
-        return facNumber;
+    console.log("-- Aufgabe 5a -- \nDas Ergebnis ist " + multiply(8, 6) + "!");
+    // - 5b -
+    function max(_num1, _num2) {
+        let maxResult;
+        maxResult = Math.max(_num1, _num2);
+        return maxResult;
     }
-}
-console.log("-- Aufgabe 5e -- \nDas Ergebnis ist " + factorial(4) + "!");
-// - 5f -
-console.log("-- Aufgabe 5f --");
-function leapyears() {
-    let currentYear = 1900;
-    for (let i = 0; currentYear + i <= 2021; i++) {
-        let itLeaps = currentYear + i;
-        if (itLeaps % 4 == 0 && itLeaps % 100 != 0) { // divided by 4, but not by 100 is a leapyear
-            console.log(itLeaps + " ist ein Schaltjahr.");
+    console.log("-- Aufgabe 5b -- \nDas Ergebnis ist " + max(22, 64) + "!");
+    // - 5c -
+    let initNumber = 1;
+    let finalNumber = 0;
+    while (initNumber <= 100) {
+        finalNumber = finalNumber + initNumber;
+        initNumber++;
+    }
+    console.log("-- Aufgabe 5c -- \nDas Ergebnis ist " + finalNumber + "!");
+    // - 5d -
+    console.log("-- Aufgabe 5d --");
+    for (let i = 0; i < 10; i++) {
+        let randomNumber = Math.floor(Math.random() * 100); // used Math.floor() so it doesn't spit out a super long number
+        console.log((i + 1) + "te Zahl ist " + randomNumber + "!");
+    }
+    // - 5e -
+    function factorial(_myNumber) {
+        let facNumber = 1;
+        let givenNumber = _myNumber;
+        if (_myNumber < 1) {
+            return 1;
         }
-        if (itLeaps % 400 == 0) { // divided by 400 is also a leapyear though
-            console.log(itLeaps + " ist ein Schaltjahr.");
+        else {
+            for (let i = 1; i <= _myNumber; i++) {
+                facNumber = facNumber * givenNumber;
+                givenNumber--; // starts using highest given number first and goes down to 1
+            }
+            return facNumber;
         }
     }
-}
-leapyears();
-// --- Aufgabe 6 ---
-// - 6a -
-console.log("-- Aufgabe 6a --");
-let hashtag = "";
-do {
-    hashtag = hashtag + "#";
-    console.log(hashtag);
-} while (hashtag.length < 7); // gives out hashtag consolelogs until it reaches length of 7
-// - 6b -
-console.log("-- Aufgabe 6b --");
-for (let i = 1; i <= 100; i++) {
-    if (i % 3 == 0) { // divided by 3 is Fizz
-        console.log("Fizz");
+    console.log("-- Aufgabe 5e -- \nDas Ergebnis ist " + factorial(4) + "!");
+    // - 5f -
+    console.log("-- Aufgabe 5f --");
+    function leapyears() {
+        let currentYear = 1900;
+        for (let i = 0; currentYear + i <= 2021; i++) {
+            let itLeaps = currentYear + i;
+            if (itLeaps % 4 == 0 && itLeaps % 100 != 0) { // divided by 4, but not by 100 is a leapyear
+                console.log(itLeaps + " ist ein Schaltjahr.");
+            }
+            if (itLeaps % 400 == 0) { // divided by 400 is also a leapyear though
+                console.log(itLeaps + " ist ein Schaltjahr.");
+            }
+        }
     }
-    else if (i % 5 == 0 && i % 3 != 0) { // divided by 5, but not 3 is Buzz
-        console.log("Buzz");
-    }
-    else
-        console.log(i); // else gives out number
-}
-// - 6c -
-console.log("-- Aufgabe 6c --");
-for (let i = 1; i <= 100; i++) {
-    if (i % 3 == 0 && i % 5 == 0) { // inserted FizzBuzz at the top
-        console.log("FizzBuzz"); // because it would not read otherwise
-    }
-    else if (i % 3 == 0) { // cuz it would've been overridden by just Fizz
-        console.log("Fizz");
-    }
-    else if (i % 5 == 0 && i % 3 != 0) {
-        console.log("Buzz");
-    }
-    else
-        console.log(i);
-}
-// - 6d -
-console.log("-- Aufgabe 6d --");
-function hashtaggery() {
-    let fullLine = "";
-    let spaceChar = " ";
-    let hashChar = "#";
-    for (let p = 0; p <= 7; p++) {
-        if (p % 2 == 0) { // even lines start with space
-            fullLine = fullLine + spaceChar;
+    leapyears();
+    // --- Aufgabe 6 ---
+    // - 6a -
+    console.log("-- Aufgabe 6a --");
+    let hashtag = "";
+    do {
+        hashtag = hashtag + "#";
+        console.log(hashtag);
+    } while (hashtag.length < 7); // gives out hashtag consolelogs until it reaches length of 7
+    // - 6b -
+    console.log("-- Aufgabe 6b --");
+    for (let i = 1; i <= 100; i++) {
+        if (i % 3 == 0) { // divided by 3 is Fizz
+            console.log("Fizz");
+        }
+        else if (i % 5 == 0 && i % 3 != 0) { // divided by 5, but not 3 is Buzz
+            console.log("Buzz");
         }
         else
-            fullLine = fullLine + hashChar; // uneven ones with a hashtag
-        for (let i = 0; i <= 6; i++) {
-            if (fullLine.endsWith(" ") || fullLine.endsWith("\n")) { // also works with just endsWith(" "),
-                fullLine = fullLine + hashChar; // but added endsWith("\n")
-            }
-            else
-                fullLine = fullLine + spaceChar; // to make sure my intention was clear
-        }
-        fullLine = fullLine + "\n";
+            console.log(i); // else gives out number
     }
-    console.log(fullLine);
-}
-hashtaggery();
-// - 6e -
-console.log("-- Aufgabe 6e --");
-function hashtaggening(_boardSize) {
-    let fullLine = "";
-    let spaceChar = " ";
-    let hashChar = "#";
-    for (let p = 0; p <= _boardSize - 1; p++) { // replaced fixed boardSize with variable one
-        if (p % 2 == 0) {
-            fullLine = fullLine + spaceChar;
+    // - 6c -
+    console.log("-- Aufgabe 6c --");
+    for (let i = 1; i <= 100; i++) {
+        if (i % 3 == 0 && i % 5 == 0) { // inserted FizzBuzz at the top
+            console.log("FizzBuzz"); // because it would not read otherwise
+        }
+        else if (i % 3 == 0) { // cuz it would've been overridden by just Fizz
+            console.log("Fizz");
+        }
+        else if (i % 5 == 0 && i % 3 != 0) {
+            console.log("Buzz");
         }
         else
-            fullLine = fullLine + hashChar;
-        for (let i = 0; i <= _boardSize - 2; i++) { // also here
-            if (fullLine.endsWith(" ") || fullLine.endsWith("\n")) {
-                fullLine = fullLine + hashChar;
-            }
-            else
+            console.log(i);
+    }
+    // - 6d -
+    console.log("-- Aufgabe 6d --");
+    function hashtaggery() {
+        let fullLine = "";
+        let spaceChar = " ";
+        let hashChar = "#";
+        for (let p = 0; p <= 7; p++) {
+            if (p % 2 == 0) { // even lines start with space
                 fullLine = fullLine + spaceChar;
+            }
+            else
+                fullLine = fullLine + hashChar; // uneven ones with a hashtag
+            for (let i = 0; i <= 6; i++) {
+                if (fullLine.endsWith(" ") || fullLine.endsWith("\n")) { // also works with just endsWith(" "),
+                    fullLine = fullLine + hashChar; // but added endsWith("\n")
+                }
+                else
+                    fullLine = fullLine + spaceChar; // to make sure my intention was clear
+            }
+            fullLine = fullLine + "\n";
         }
-        fullLine = fullLine + "\n";
+        console.log(fullLine);
     }
-    console.log(fullLine);
-}
-hashtaggening(10);
+    hashtaggery();
+    // - 6e -
+    console.log("-- Aufgabe 6e --");
+    function hashtaggening(_boardSize) {
+        let fullLine = "";
+        let spaceChar = " ";
+        let hashChar = "#";
+        for (let p = 0; p <= _boardSize - 1; p++) { // replaced fixed boardSize with variable one
+            if (p % 2 == 0) {
+                fullLine = fullLine + spaceChar;
+            }
+            else
+                fullLine = fullLine + hashChar;
+            for (let i = 0; i <= _boardSize - 2; i++) { // also here
+                if (fullLine.endsWith(" ") || fullLine.endsWith("\n")) {
+                    fullLine = fullLine + hashChar;
+                }
+                else
+                    fullLine = fullLine + spaceChar;
+            }
+            fullLine = fullLine + "\n";
+        }
+        console.log(fullLine);
+    }
+    hashtaggening(10);
+})(Abgabe2_1Aufgabe1 || (Abgabe2_1Aufgabe1 = {}));
 //# sourceMappingURL=script.js.map
