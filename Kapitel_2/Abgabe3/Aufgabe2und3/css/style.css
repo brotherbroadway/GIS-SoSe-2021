@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background-image: url("../bg.png");
+    background-repeat: repeat;
+}
+
+img {
+    width: 30%;
+    height:  30%;
+}
+
+h1 {
+    font-variant: small-caps;
+    font-weight: 900;
+}
+
+p {
+    font-style: italic;
+    font-weight: bold;
+}
