@@ -7,7 +7,7 @@ body {
 
 .entireSelect {
     background-color: rgb(34,34,34);
-    opacity: 0.98;
+    opacity: 0.95;
     border: 3px solid orange;
     border-radius: 25px;
     box-shadow: 0px 0px 15px black;
@@ -26,7 +26,7 @@ body {
 
 .entirePreview {
     position: fixed;
-    opacity: 0.98;
+    opacity: 0.95;
     background-color: rgb(34,34,34);
     border: 3px solid orange;
     border-radius: 25px;
@@ -43,7 +43,7 @@ body {
 
 .entireResult {
     background-color: rgb(34,34,34);
-    opacity: 0.98;
+    opacity: 0.95;
     border: 3px solid orange;
     border-radius: 25px;
     box-shadow: 0px 0px 15px black;
