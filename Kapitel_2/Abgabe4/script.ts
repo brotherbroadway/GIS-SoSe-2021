@@ -130,7 +130,6 @@ namespace Abgabe2_4 {
             let image1: HTMLImageElement = document.createElement("img");
             image1.setAttribute("src", sessionStorage.getItem("image1"));
             previewSpace.appendChild(image1);
-
         }
         if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "leg_select.html") {
             let imageSpace: HTMLDivElement = <HTMLDivElement> document.getElementById("dbdiv"); // Leg Selection
@@ -211,23 +210,4 @@ namespace Abgabe2_4 {
         });
         console.log(sessionStorage);
     }
-
-    /*function showResult(): void {
-        let myResult: HTMLDivElement = <HTMLDivElement> document.getElementById("dbResult");
-        let image1: HTMLImageElement = document.createElement("img");
-        let image2: HTMLImageElement = document.createElement("img");
-        let image3: HTMLImageElement = document.createElement("img");
-
-        image1.setAttribute("src", sessionStorage.getItem("image1"));
-        image2.setAttribute("src", sessionStorage.getItem("image2"));
-        image3.setAttribute("src", sessionStorage.getItem("image3"));
-
-        myResult.appendChild(image1);
-        myResult.appendChild(image2);
-        myResult.appendChild(image3);
-    }
-
-    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "result.html") {
-        showResult();
-    }*/
 }
