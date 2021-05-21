@@ -37,7 +37,7 @@ namespace Abgabe2_5 {
 
     let loadedImages: HTMLImageElement[] = [];
 
-    // OH MY GOD IT'S SO DISGUSTING
+    // Initializes window & JSON
     async function initializeWindow(): Promise <void> {
         let mySelect: DBSelection = await jsonData("http://127.0.0.1:5500/Kapitel_2/Abgabe5/data.json");
 

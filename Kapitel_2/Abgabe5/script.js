@@ -14,7 +14,7 @@ var Abgabe2_5;
         return mySelect;
     }
     let loadedImages = [];
-    // OH MY GOD IT'S SO DISGUSTING
+    // Initializes window & JSON
     async function initializeWindow() {
         let mySelect = await jsonData("http://127.0.0.1:5500/Kapitel_2/Abgabe5/data.json");
         let topHead = mySelect.headTop;
