@@ -16,7 +16,7 @@ var Abgabe2_5;
     let loadedImages = [];
     // Initializes window & JSON
     async function initializeWindow() {
-        let mySelect = await jsonData("https://brotherbroadway.github.io/GIS-SoSe-2021/Kapitel_2/Abgabe5/data.json");
+        let mySelect = await jsonData("https://github.com/brotherbroadway/GIS-SoSe-2021/tree/main/Kapitel_2/Abgabe5/data.json");
         let topHead = mySelect.headTop;
         let midBody = mySelect.bodyMid;
         let botLegs = mySelect.legsBot;

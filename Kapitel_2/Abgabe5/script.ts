@@ -39,7 +39,7 @@ namespace Abgabe2_5 {
 
     // Initializes window & JSON
     async function initializeWindow(): Promise <void> {
-        let mySelect: DBSelection = await jsonData("https://brotherbroadway.github.io/GIS-SoSe-2021/Kapitel_2/Abgabe5/data.json");
+        let mySelect: DBSelection = await jsonData("https://github.com/brotherbroadway/GIS-SoSe-2021/tree/main/Kapitel_2/Abgabe5/data.json");
 
         let topHead: DBType[] = mySelect.headTop;
         let midBody: DBType[] = mySelect.bodyMid;
