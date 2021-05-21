@@ -1,0 +1,130 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background-image: url("../bg_new.png");
+    background-size: cover;
+}
+
+.entireSelect {
+    background-color: rgb(34,34,34);
+    opacity: 0.95;
+    border: 3px solid orange;
+    border-radius: 25px;
+    box-shadow: 0px 0px 15px black;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+    width: 70%;
+    height: 420px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.entirePreview {
+    position: fixed;
+    opacity: 0.95;
+    background-color: rgb(34,34,34);
+    border: 3px solid orange;
+    border-radius: 25px;
+    box-shadow: 0px 0px 15px black;
+    top: 61.5%;
+    left: 40%;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+    width: 15%;
+    height: 250px;
+}
+
+.entireResult {
+    background-color: rgb(34,34,34);
+    opacity: 0.95;
+    border: 3px solid orange;
+    border-radius: 25px;
+    box-shadow: 0px 0px 15px black;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+    width: 40%;
+    height: 795px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#dbdiv img {
+    margin: 0 auto;
+    width: 25%;
+    height:  25%;
+    opacity: 0.8;
+    transition: 0.25s ease-in-out;
+}
+
+#dbdiv img:hover {
+    width: 26%;
+    height: 31%;
+    opacity: 1;
+    transition: 0.25s ease-in-out;
+}
+
+h3 {
+    color: orange;
+    text-shadow: 1px 1px 10px black;
+    text-align: center;
+}
+
+p {
+    text-shadow: 1px 1px 10px black;
+    margin-bottom: 25px;
+}
+
+#dbPreview {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#dbPreview img {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    opacity: 1;
+}
+
+#dbResult {
+    margin-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#dbResult img {
+    display: block;
+    margin: 0 auto;
+    width: 46%;
+    opacity: 1;
+}
+
+h1 {
+    color: orange;
+    text-shadow: 1px 1px 10px black;
+    text-align: center;
+    font-variant: small-caps;
+    font-weight: 900;
+}
+
+p {
+    font-style: italic;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

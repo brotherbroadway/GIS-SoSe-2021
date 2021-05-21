@@ -1,0 +1,41 @@
+{
+    "headTop": [{
+        "link": "assets/vegetaHead.png",
+        "type": 0
+    },
+    {
+        "link": "assets/android18Head.png",
+        "type": 0
+    },
+    {
+        "link": "assets/jirenHead.png",
+        "type": 0
+    }
+],
+    "bodyMid": [{
+        "link": "assets/vegetaBody.png",
+        "type": 1
+    },
+    {
+        "link": "assets/android18Body.png",
+        "type": 1
+    },
+    {
+        "link": "assets/jirenBody.png",
+        "type": 1
+    }
+],
+    "legsBot": [{
+        "link": "assets/vegetaLegs.png",
+        "type": 2
+    },
+    {
+        "link": "assets/android18Legs.png",
+        "type": 2
+    },
+    {
+        "link": "assets/jirenLegs.png",
+        "type": 2
+    }
+]
+}
