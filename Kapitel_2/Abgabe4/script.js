@@ -177,23 +177,5 @@ var Abgabe2_4;
         });
         console.log(sessionStorage);
     }
-    /*function showResult(): void {
-        let myResult: HTMLDivElement = <HTMLDivElement> document.getElementById("dbResult");
-        let image1: HTMLImageElement = document.createElement("img");
-        let image2: HTMLImageElement = document.createElement("img");
-        let image3: HTMLImageElement = document.createElement("img");
-
-        image1.setAttribute("src", sessionStorage.getItem("image1"));
-        image2.setAttribute("src", sessionStorage.getItem("image2"));
-        image3.setAttribute("src", sessionStorage.getItem("image3"));
-
-        myResult.appendChild(image1);
-        myResult.appendChild(image2);
-        myResult.appendChild(image3);
-    }
-
-    if (window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) == "result.html") {
-        showResult();
-    }*/
 })(Abgabe2_4 || (Abgabe2_4 = {}));
 //# sourceMappingURL=script.js.map
