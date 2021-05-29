@@ -19,8 +19,8 @@ export namespace P_3_1Server {
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { // checks for incoming request and server response
         console.log("I hear voices!"); // logs i hear voices
         _response.setHeader("content-type", "text/html; charset=utf-8"); // declares server response type to be in text/html
-        _response.setHeader("Access-Control-Allow-Origin", "*"); // response can be shared publicly
-        _response.write(_request.url); // writes the response in the url
-        _response.end(); // ends the response
+        _response.setHeader("Access-Control-Allow-Origin", "*"); // response access unrestricted
+        _response.write(_request.url); // what gets returned for the response to the request
+        _response.end(); // ends the response and sends it
     }
 }

@@ -18,9 +18,9 @@ var P_3_1Server;
     function handleRequest(_request, _response) {
         console.log("I hear voices!"); // logs i hear voices
         _response.setHeader("content-type", "text/html; charset=utf-8"); // declares server response type to be in text/html
-        _response.setHeader("Access-Control-Allow-Origin", "*"); // response can be shared publicly
-        _response.write(_request.url); // writes the response in the url
-        _response.end(); // ends the response
+        _response.setHeader("Access-Control-Allow-Origin", "*"); // response access unrestricted
+        _response.write(_request.url); // what gets returned for the response to the request
+        _response.end(); // ends the response and sends it
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=server.js.map
