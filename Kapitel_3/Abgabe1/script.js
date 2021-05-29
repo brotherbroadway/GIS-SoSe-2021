@@ -22,6 +22,5 @@ var P_3_1Server;
         _response.write(_request.url);
         _response.end();
     }
-    console.log("epic");
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=script.js.map

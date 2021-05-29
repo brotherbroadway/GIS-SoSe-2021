@@ -23,8 +23,6 @@ export namespace P_3_1Server {
         _response.write(_request.url);
         _response.end();
     }
-
-    console.log("epic");
 }
 
 
