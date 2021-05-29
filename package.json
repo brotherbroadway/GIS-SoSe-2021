@@ -1,0 +1,21 @@
+{
+  "name": "superomegaepicgis",
+  "version": "1.0.0",
+  "description": "epic",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node Kapitel_3/Abgabe1/script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brotherbroadway/GIS-SoSe-2021.git"
+  },
+  "author": "brotherbroadway",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brotherbroadway/GIS-SoSe-2021/issues"
+  },
+  "homepage": "https://github.com/brotherbroadway/GIS-SoSe-2021#readme"
+}
