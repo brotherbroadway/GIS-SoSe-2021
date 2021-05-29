@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>epic form</h1>
-    <form action="https://superomegaepicapp.herokuapp.com" method="GET">
+    <form>
         <div>
             <label for="username">username</label>
             <input type="text" id="username" name="username" required>
@@ -36,7 +36,10 @@
             <label for="checkbox">are you epic</label>
         </div>
         <div>
-            <button type="submit">sign up for epic newsletter</button>
+            <button type="submit" id="sendButton">sign up for epic newsletter</button>
+        </div>
+        <div>
+            <p id="serverReply"></p>
         </div>
     </form>
 </body>
