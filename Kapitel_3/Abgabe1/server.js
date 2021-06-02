@@ -17,6 +17,7 @@ var P_3_1Server;
     }
     function handleRequest(_request, _response) {
         console.log("I hear voices!"); // logs i hear voices
+        console.log(_request.url); // returns url of the request to console
         _response.setHeader("content-type", "text/html; charset=utf-8"); // declares server response type to be in text/html
         _response.setHeader("Access-Control-Allow-Origin", "*"); // response access unrestricted
         _response.write(_request.url); // what gets returned for the response to the request
