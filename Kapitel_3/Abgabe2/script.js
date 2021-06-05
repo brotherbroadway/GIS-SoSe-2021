@@ -2,7 +2,7 @@
 var Abgabe3_2;
 (function (Abgabe3_2) {
     // let sendToURL: string = "http://localhost:8080"; // private testing
-    let sendToURL = "http://superomegaepicapp.herokuapp.com"; // public testing
+    let sendToURL = "https://superomegaepicapp.herokuapp.com"; // public testing
     // these are for html output
     let dataLog = document.getElementById("serverReply");
     // html send function
