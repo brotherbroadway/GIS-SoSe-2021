@@ -1,14 +1,17 @@
 {
   "name": "superomegaepicgis",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "epic",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/mongodb": "^3.6.18",
+    "mongodb": "^3.6.9"
+  },
   "devDependencies": {
     "@types/node": "^15.12.1"
   },
   "scripts": {
-    "start": "node Kapitel_3/Abgabe2/server.js"
+    "start": "node Kapitel_3/Abgabe3/server.js"
   },
   "repository": {
     "type": "git",
