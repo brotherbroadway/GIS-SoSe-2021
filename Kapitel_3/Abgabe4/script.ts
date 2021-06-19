@@ -29,7 +29,7 @@ namespace Abgabe3_4 {
         let query: URLSearchParams = new URLSearchParams(<any>dataForm);
         _url = _url + "/show?" + query.toString(); // for /json + ? get request & to string
         let dataResponse: Response = await fetch(_url);
-        let dataReply: EpicForm = <EpicForm> await dataResponse.json();
+        let dataReply: EpicForm = await dataResponse.json();
         let replyString: string = JSON.stringify(dataReply);
         dataLog.innerHTML = replyString; // appends reply to set div("serverReply")
     }
