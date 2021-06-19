@@ -36,8 +36,8 @@ namespace Abgabe3_4 {
     }
 
     // buttons initialized
-    let buttonHTML: HTMLButtonElement = <HTMLButtonElement> document.getElementById("htmlButton"); // html button defined
-    let buttonJSON: HTMLButtonElement = <HTMLButtonElement> document.getElementById("jsonButton"); // json button defined
-    buttonHTML.addEventListener("click", sendBttn);
-    buttonJSON.addEventListener("click", showBttn);
+    let buttonSend: HTMLButtonElement = <HTMLButtonElement> document.getElementById("sendButton"); // send button defined
+    let buttonShow: HTMLButtonElement = <HTMLButtonElement> document.getElementById("showButton"); // show button defined
+    buttonSend.addEventListener("click", sendBttn);
+    buttonShow.addEventListener("click", showBttn);
 }

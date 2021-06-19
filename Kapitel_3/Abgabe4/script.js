@@ -32,9 +32,9 @@ var Abgabe3_4;
         showData(sendToURL);
     }
     // buttons initialized
-    let buttonHTML = document.getElementById("htmlButton"); // html button defined
-    let buttonJSON = document.getElementById("jsonButton"); // json button defined
-    buttonHTML.addEventListener("click", sendBttn);
-    buttonJSON.addEventListener("click", showBttn);
+    let buttonSend = document.getElementById("sendButton"); // send button defined
+    let buttonShow = document.getElementById("showButton"); // show button defined
+    buttonSend.addEventListener("click", sendBttn);
+    buttonShow.addEventListener("click", showBttn);
 })(Abgabe3_4 || (Abgabe3_4 = {}));
 //# sourceMappingURL=script.js.map
