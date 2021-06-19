@@ -11,7 +11,7 @@
     "@types/node": "^15.12.1"
   },
   "scripts": {
-    "start": "node Kapitel_3/Abgabe3/server.js"
+    "start": "node Kapitel_3/Abgabe4/server.js"
   },
   "repository": {
     "type": "git",
