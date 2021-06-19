@@ -37,7 +37,7 @@ var P_3_4Server;
         if (_request.url) {
             let myURL = Url.parse(_request.url, true);
             let chosenPath = myURL.pathname; // stores pathname in string
-            let epicEntry = { username: myURL.query.username + "", password: myURL.query.password + "", mostepic: myURL.query.mostepic + "", essay: myURL.query.essay + "", checkbox: JSON.parse(myURL.query.checkbox + "") };
+            let epicEntry = { username: myURL.query.username + "", password: myURL.query.password + "", mostepic: myURL.query.mostepic + "", coolno: parseInt(myURL.query.coolno + ""), essay: myURL.query.essay + "" };
             // checks if /html or /json path was chosen
             if (chosenPath == "/send") { // path used when button is pressed to send data to the database
                 let dataResponse = await saveMe(databaseUrl, epicEntry); // saves current entry
