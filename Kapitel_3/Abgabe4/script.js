@@ -1,7 +1,7 @@
 "use strict";
 var Abgabe3_4;
 (function (Abgabe3_4) {
-    // let sendToURL: string = "http://localhost:8080"; // private testing
+    // let sendToURL: string = "http://localhost:8100"; // private testing
     let sendToURL = "https://superomegaepicapp.herokuapp.com"; // public testing
     // these are for html output
     let dataLog = document.getElementById("serverReply");
@@ -11,7 +11,7 @@ var Abgabe3_4;
         let query = new URLSearchParams(dataForm);
         _url = _url + "/send?" + query.toString(); // for /html + ? get request & to string
         let dataResponse = await fetch(_url);
-        let dataReply = await dataResponse.text();
+        let dataReply = await dataResponse.json();
         console.log(dataReply);
     }
     // json send function
@@ -20,8 +20,9 @@ var Abgabe3_4;
         let query = new URLSearchParams(dataForm);
         _url = _url + "/show?" + query.toString(); // for /json + ? get request & to string
         let dataResponse = await fetch(_url);
-        let dataReply = await dataResponse.text();
-        dataLog.innerHTML = dataReply; // appends reply to set div("serverReply")
+        let dataReply = await dataResponse.json();
+        let replyString = JSON.stringify(dataReply);
+        dataLog.innerHTML = replyString; // appends reply to set div("serverReply")
     }
     // html send
     function sendBttn(_event) {

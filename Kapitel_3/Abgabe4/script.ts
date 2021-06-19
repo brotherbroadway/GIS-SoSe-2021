@@ -1,6 +1,14 @@
 namespace Abgabe3_4 {
 
-    // let sendToURL: string = "http://localhost:8080"; // private testing
+    interface EpicForm { // Form entry as interface
+        username: string;
+        password: string;
+        mostepic: string;
+        coolno: number;
+        essay: string;
+    }
+
+    // let sendToURL: string = "http://localhost:8100"; // private testing
     let sendToURL: string = "https://superomegaepicapp.herokuapp.com"; // public testing
     // these are for html output
     let dataLog: HTMLDivElement = <HTMLDivElement> document.getElementById("serverReply");
@@ -11,7 +19,7 @@ namespace Abgabe3_4 {
         let query: URLSearchParams = new URLSearchParams(<any>dataForm);
         _url = _url + "/send?" + query.toString(); // for /html + ? get request & to string
         let dataResponse: Response = await fetch(_url);
-        let dataReply: string = await dataResponse.text();
+        let dataReply: EpicForm = <EpicForm> await dataResponse.json();
         console.log(dataReply);
     }
 
@@ -21,8 +29,9 @@ namespace Abgabe3_4 {
         let query: URLSearchParams = new URLSearchParams(<any>dataForm);
         _url = _url + "/show?" + query.toString(); // for /json + ? get request & to string
         let dataResponse: Response = await fetch(_url);
-        let dataReply: string = await dataResponse.text();
-        dataLog.innerHTML = dataReply; // appends reply to set div("serverReply")
+        let dataReply: EpicForm = <EpicForm> await dataResponse.json();
+        let replyString: string = JSON.stringify(dataReply);
+        dataLog.innerHTML = replyString; // appends reply to set div("serverReply")
     }
 
     // html send
