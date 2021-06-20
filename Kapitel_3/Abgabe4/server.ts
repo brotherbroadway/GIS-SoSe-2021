@@ -11,12 +11,12 @@ export namespace P_3_4Server {
         coolno: number;
         essay: string;
     }
-
+    
     let port: number | string | undefined = Number(process.env.PORT); // creates port variable and configures environment port variable
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
 
-    let databaseUrl: string = "mongodb+srv://epicUser:gamingamingaming@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
+    let databaseUrl: string = "mongodb+srv://epicUser:gaminggaming@superomegaepicgis.gadfy.mongodb.net"; // the mongodb url
 
     startServer(port); // starts server with assigned port
 
