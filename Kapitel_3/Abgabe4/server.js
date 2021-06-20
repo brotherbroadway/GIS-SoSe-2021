@@ -9,7 +9,7 @@ var P_3_4Server;
     let port = Number(process.env.PORT); // creates port variable and configures environment port variable
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
-    let databaseUrl = "mongodb+srv://epicUser:<gamingamingaming>@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
+    let databaseUrl = "mongodb+srv://epicUser:gamingamingaming@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
     startServer(port); // starts server with assigned port
     function startServer(_port) {
         let server = Http.createServer(); // creates server 

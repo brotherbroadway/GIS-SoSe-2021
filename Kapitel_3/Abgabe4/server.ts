@@ -16,7 +16,7 @@ export namespace P_3_4Server {
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
 
-    let databaseUrl: string = "mongodb+srv://epicUser:<gamingamingaming>@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
+    let databaseUrl: string = "mongodb+srv://epicUser:gamingamingaming@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
 
     startServer(port); // starts server with assigned port
 
