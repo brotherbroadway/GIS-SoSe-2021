@@ -64,8 +64,6 @@ var P_3_4Server;
         await dbClient.connect(); // connects to mongo client
         let dbCollection = dbClient.db("GIS3_4").collection("EpicCollection"); // checks collection
         dbCollection.insertOne(_formEntry); // inserts entry into collection
-        let dataResponse = "Entry entered."; // notifies user that entry has been entered
-        return dataResponse;
     }
     async function checkDB() {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };

@@ -72,14 +72,12 @@ export namespace P_3_4Server {
         _response.end(); // ends the response and sends it
     }
 
-    async function saveMe(_formEntry: EpicForm): Promise <string> {
+    async function saveMe(_formEntry: EpicForm): Promise <void> {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let dbClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
         await dbClient.connect(); // connects to mongo client
         let dbCollection: Mongo.Collection = dbClient.db("GIS3_4").collection("EpicCollection"); // checks collection
         dbCollection.insertOne(_formEntry); // inserts entry into collection
-        let dataResponse: string = "Entry entered."; // notifies user that entry has been entered
-        return dataResponse;
     }
 
     async function checkDB(): Promise <EpicForm[]> {
