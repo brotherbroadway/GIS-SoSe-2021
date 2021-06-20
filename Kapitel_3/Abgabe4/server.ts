@@ -16,7 +16,7 @@ export namespace P_3_4Server {
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
 
-    let databaseUrl: string = "mongodb+srv://dbTest:<qU1LFxBDxaUpD58E>@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
+    let databaseUrl: string = "mongodb+srv://epicUser:<gamingamingaming>@superomegaepicgis.gadfy.mongodb.net/GIS3_4?retryWrites=true&w=majority"; // the mongodb url
 
     startServer(port); // starts server with assigned port
 
@@ -76,7 +76,9 @@ export namespace P_3_4Server {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let dbClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
         await dbClient.connect(); // connects to mongo client
+        console.log("Entered database.");
         let dbCollection: Mongo.Collection = dbClient.db("GIS3_4").collection("EpicCollection"); // checks collection
+        console.log("Entry saved.");
         dbCollection.insertOne(_formEntry); // inserts entry into collection
     }
 
