@@ -20,7 +20,7 @@ var P_3_4Server;
     }
     /*
     // From prof's video
-    connectToDatabase(databaseUrl); // 20217
+    connectToDatabase(databaseUrl);
 
     async function connectToDatabase(_url: string): Promise <void> {
         let orders: Mongo.Collection;
