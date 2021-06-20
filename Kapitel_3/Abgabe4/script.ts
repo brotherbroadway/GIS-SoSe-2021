@@ -8,7 +8,7 @@ namespace Abgabe3_4 {
         essay: string;
     }
 
-    // let sendToURL: string = "http://localhost:8100"; // private testing 20217
+    // let sendToURL: string = "http://localhost:8100"; // private testing 21217
     let sendToURL: string = "https://superomegaepicapp.herokuapp.com"; // public testing
     // these are for html output
     let dataLog: HTMLDivElement = <HTMLDivElement> document.getElementById("serverReply");
