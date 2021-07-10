@@ -3,7 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 import * as Interface from "../server/interface";
 
-export namespace P_EndServer {
+export namespace AbgabeEnd {
     
     let port: number | string | undefined = Number(process.env.PORT); // creates port variable and configures environment port variable
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
@@ -80,12 +80,13 @@ export namespace P_EndServer {
             } else if (chosenPath == "/recipesMy") {
                 console.log("Loading my recipes...");
                 let recipesMine: Interface.RecipeForm[];
-                recipesMine = await dbRecipeCollection.find({recipeAuthor: myURL.query}).toArray();
+                recipesMine = await dbRecipeCollection.find({"recipeAuthor": myURL.query.loggedUser}).toArray();
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(recipesMine));
             } else if (chosenPath == "/recipeSave") {
                 console.log("Saving recipe...");
                 dbRecipeCollection.insertOne(myURL.query);
+                console.log("Recipe saved!");
             }
         }
 
