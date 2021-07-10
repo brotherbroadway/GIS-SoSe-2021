@@ -16,7 +16,7 @@ export namespace P_EndServer {
     let databaseUrl: string = "mongodb+srv://epicUser:gaminggaming@superomegaepicgis.gadfy.mongodb.net"; // the mongodb url
 
     // User Login setup
-    let dbUserRegistryAll: UserRegForm[];
+    //let dbUserRegistryAll: UserRegForm[];
     let dbUserNew: UserRegForm;
     // Mongo Collections setup
     let dbUserCollection: Mongo.Collection;
@@ -50,13 +50,22 @@ export namespace P_EndServer {
             // checks if /html or /json path was chosen
             if (chosenPath == "/userRegister") { // path used when button is pressed to send data to the database
                 console.log("Registering user...");
-                dbUserRegistryAll = await dbUserCollection.find().toArray();
+                // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameReg: string = <string> myURL.query["username"];
                 let pwReg: string = <string> myURL.query["password"];
-                let userRegEntry: UserRegForm = {username: nameReg + "", password: pwReg + ""};
-                let existingReg: boolean = false;
+                // let userRegEntry: UserRegForm = {username: nameReg + "", password: pwReg + ""};
+                // let existingReg: boolean = false;
 
-                for (let i: number = 0; i < dbUserRegistryAll.length; i++) { // checks if registered user already exists
+                if (dbUserCollection.find({"username": nameReg.toString()}).limit(1).count(true)) {
+                    _response.write("UserFail");
+                    console.log("Failed registration. User already exists.");
+                } else {
+                    dbUserCollection.insertOne({"username": nameReg, "password": pwReg});
+                    _response.write("UserSuccess");
+                    console.log("Succesfully registered a new user!");
+                }
+
+                /*for (let i: number = 0; i < dbUserRegistryAll.length; i++) { // checks if registered user already exists
                     if (userRegEntry.username == dbUserRegistryAll[i].username) {
                         existingReg = true;
                     }
@@ -68,14 +77,21 @@ export namespace P_EndServer {
                 } else { // if user exists already, return failed registration
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
-                }
+                }*/
 
             } else if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
                 console.log("Logging user in...");
-                dbUserRegistryAll = await dbUserCollection.find().toArray();
+                // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameLogin: string = <string> myURL.query["username"];
                 let pwLogin: string = <string> myURL.query["password"];
-                let confirmedName: boolean = false;
+                if (dbUserCollection.find({"username": nameLogin.toString(), "password": pwLogin.toString()}).limit(1).count(true)) {
+                    _response.write(JSON.stringify(dbUserNew));
+                    console.log("Succesfully logged user in!");
+                } else {
+                    _response.write("UserFail");
+                    console.log("Failed login. User doesn't exist.");
+                }
+                /*let confirmedName: boolean = false;
                 let confirmedPW: boolean = false;
 
                 for (let i: number = 0; i < dbUserRegistryAll.length; i++) { // checks if username & password exist in database collection
@@ -95,7 +111,7 @@ export namespace P_EndServer {
                     console.log("Failed login. User doesn't exist.");
                 }
                 confirmedName = false;
-                confirmedPW = false;
+                confirmedPW = false;*/
             }
         }
 
