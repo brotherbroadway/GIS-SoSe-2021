@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Login</title>
+    <script defer src="script_login.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Login</h1>
+    <form>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password (6 characters minimum)</label>
+            <input type="password" id="password" name="password" minlength="6" required>
+        </div>
+        <div>
+            <button type="button" id="userRegisterButton">Register</button>
+            <button type="button" id="userLoginButton">Login</button>
+        </div>
+        <div">
+            <div id="serverReply"></div>
+        </div>
+    </form>
+</body>
+</html>
