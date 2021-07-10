@@ -1,10 +1,10 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
-import * as Interface from "../server/interface";
+// interfaces taken from interface.d.ts
 
 export namespace AbgabeEnd {
-    
+
     let port: number | string | undefined = Number(process.env.PORT); // creates port variable and configures environment port variable
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
@@ -74,12 +74,12 @@ export namespace AbgabeEnd {
             } else if (chosenPath == "/recipesAll") {
                 console.log("Loading all recipes...");
                 let findAllCursor: Mongo.Cursor = dbRecipeCollection.find();
-                let resultAll: Interface.RecipeForm[] = await findAllCursor.toArray();
+                let resultAll: RecipeForm[] = await findAllCursor.toArray();
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(resultAll));
             } else if (chosenPath == "/recipesMy") {
                 console.log("Loading my recipes...");
-                let recipesMine: Interface.RecipeForm[];
+                let recipesMine: RecipeForm[];
                 recipesMine = await dbRecipeCollection.find({"recipeAuthor": myURL.query.loggedUser}).toArray();
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(recipesMine));
@@ -87,6 +87,10 @@ export namespace AbgabeEnd {
                 console.log("Saving recipe...");
                 dbRecipeCollection.insertOne(myURL.query);
                 console.log("Recipe saved!");
+            } else if (chosenPath == "/recipeDel") {
+                console.log("Deleting recipe...");
+                dbRecipeCollection.deleteOne({"recipeName": myURL.query.recipeName});
+                _response.write("Recipe deleted!");
             }
         }
 

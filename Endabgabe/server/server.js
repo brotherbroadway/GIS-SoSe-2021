@@ -4,6 +4,7 @@ exports.AbgabeEnd = void 0;
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
+// interfaces taken from interface.d.ts
 var AbgabeEnd;
 (function (AbgabeEnd) {
     let port = Number(process.env.PORT); // creates port variable and configures environment port variable
@@ -83,6 +84,11 @@ var AbgabeEnd;
                 console.log("Saving recipe...");
                 dbRecipeCollection.insertOne(myURL.query);
                 console.log("Recipe saved!");
+            }
+            else if (chosenPath == "/recipeDel") {
+                console.log("Deleting recipe...");
+                dbRecipeCollection.deleteOne({ "recipeName": myURL.query.recipeName });
+                _response.write("Recipe deleted!");
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request
