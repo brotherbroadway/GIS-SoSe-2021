@@ -22,7 +22,8 @@ var AbgabeEnd;
         sessionStorage.clear();
         if (dataReply != "UserFail") {
             sessionStorage.setItem("ssnUser", JSON.stringify(dataReply)); // ssn = session
-            window.location.href = "allRecipes.html";
+            window.open("allRecipes.html", "_self");
+            //window.location.href = "allRecipes.html";
         }
         else {
             window.alert("User already exists!");
@@ -44,10 +45,10 @@ var AbgabeEnd;
         sessionStorage.clear();
         if (dataReply != "UserFail") {
             sessionStorage.setItem("ssnUser", JSON.stringify(dataReply)); // ssn = session
-            window.location.href = "allRecipes.html";
+            window.open("allRecipes.html", "_self");
         }
         else {
-            window.alert("User doesn't exist!");
+            window.alert("Username/password doesn't exist!");
         }
     }
     // login button send
