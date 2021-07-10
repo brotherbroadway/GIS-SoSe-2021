@@ -85,8 +85,9 @@ export namespace P_EndServer {
                 // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameLogin: string = <string> myURL.query["username"];
                 let pwLogin: string = <string> myURL.query["password"];
-                let dbUserRegistry: UserRegForm = await dbUserCollection.findOne({"username": nameLogin, "password": pwLogin});
-                if (dbUserRegistry != undefined) {
+                let dbUserRegistry: number = await dbUserCollection.find({"username": nameLogin, "password": pwLogin}).limit(1).count(true);
+                if (dbUserRegistry == 1) {
+                    dbUserNew = {username: nameLogin, password: pwLogin}
                     _response.write(JSON.stringify(dbUserNew));
                     console.log("Succesfully logged user in!");
                 } else {

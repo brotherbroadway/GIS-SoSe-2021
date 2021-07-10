@@ -73,8 +73,9 @@ var P_EndServer;
                 // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameLogin = myURL.query["username"];
                 let pwLogin = myURL.query["password"];
-                let dbUserRegistry = await dbUserCollection.findOne({ "username": nameLogin, "password": pwLogin });
-                if (dbUserRegistry != undefined) {
+                let dbUserRegistry = await dbUserCollection.find({ "username": nameLogin, "password": pwLogin }).limit(1).count(true);
+                if (dbUserRegistry == 1) {
+                    dbUserNew = { username: nameLogin, password: pwLogin };
                     _response.write(JSON.stringify(dbUserNew));
                     console.log("Succesfully logged user in!");
                 }
