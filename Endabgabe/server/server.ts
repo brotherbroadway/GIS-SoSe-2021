@@ -56,7 +56,7 @@ export namespace P_EndServer {
                 // let userRegEntry: UserRegForm = {username: nameReg + "", password: pwReg + ""};
                 // let existingReg: boolean = false;
 
-                if (dbUserCollection.findOne({"username": nameReg}) != undefined) {
+                if (dbUserCollection.findOne({"username": nameReg})) {
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
                 } else {
@@ -84,7 +84,7 @@ export namespace P_EndServer {
                 // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameLogin: string = <string> myURL.query["username"];
                 let pwLogin: string = <string> myURL.query["password"];
-                if (dbUserCollection.findOne({"username": nameLogin, "password": pwLogin}) != undefined) {
+                if (dbUserCollection.findOne({"username": nameLogin, "password": pwLogin})) {
                     _response.write(JSON.stringify(dbUserNew));
                     console.log("Succesfully logged user in!");
                 } else {
