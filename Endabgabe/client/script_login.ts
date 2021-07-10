@@ -1,8 +1,9 @@
 namespace AbgabeEnd {
 
-    /*interface UserRegForm { // Form entry as interface
+    /*interface UserRegForm { // User form entry as interface
         username: string;
         password: string;
+        favRecipes: RecipeForm[];
     }*/
 
     // let sendToURL: string = "http://localhost:8100"; // private testing 009
@@ -12,17 +13,17 @@ namespace AbgabeEnd {
 
     // register function
     async function userRegData(_url: RequestInfo): Promise <void> {
-        console.log("Testing user register");
+        console.log("User registration in progress...");
         let dataForm: FormData = new FormData(document.forms[0]); // form data gets generated
         let query: URLSearchParams = new URLSearchParams(<any>dataForm);
         _url = _url + "/userRegister?" + query.toString(); // for /html + ? get request & to string
         let dataResponse: Response = await fetch(_url);
         let dataReply: string = await dataResponse.text();
-        console.log("User's register data:");
-        console.log(dataReply);
+        // console.log("User's register data:");
+        // console.log(dataReply);
         sessionStorage.clear();
         if (dataReply != "UserFail") {
-            sessionStorage.setItem("ssnUser", JSON.stringify(dataReply)); // ssn = session
+            sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
             window.open("allRecipes.html", "_self");
             //window.location.href = "allRecipes.html";
         } else {
@@ -34,7 +35,7 @@ namespace AbgabeEnd {
 
     // login function
     async function userLoginData(_url: RequestInfo): Promise <void> {
-        console.log("Testing user login");
+        console.log("User login in progress...");
         let dataForm: FormData = new FormData(document.forms[0]); // form data gets generated
         let query: URLSearchParams = new URLSearchParams(<any>dataForm);
         _url = _url + "/userLogin?" + query.toString(); // for /json + ? get request & to string
@@ -42,11 +43,11 @@ namespace AbgabeEnd {
         let dataReply: string = await dataResponse.text();
         // let replyString: string = JSON.stringify(dataReply);
         // dataLog.innerHTML = replyString; // appends reply to set div("serverReply")
-        console.log("User's login data:");
-        console.log(dataReply);
+        // console.log("User's login data:");
+        // console.log(dataReply);
         sessionStorage.clear();
         if (dataReply != "UserFail") {
-            sessionStorage.setItem("ssnUser", JSON.stringify(dataReply)); // ssn = session
+            sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
             window.open("allRecipes.html", "_self");
         } else {
             window.alert("Username/password doesn't exist!");
