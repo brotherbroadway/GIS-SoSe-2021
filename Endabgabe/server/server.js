@@ -87,7 +87,7 @@ var AbgabeEnd;
             }
             else if (chosenPath == "/recipeDel") {
                 console.log("Deleting recipe...");
-                dbRecipeCollection.deleteOne({ "recipeName": myURL.query.recipeName });
+                dbRecipeCollection.findOneAndDelete({ "recipeName": myURL.query.recipeName });
                 _response.write("Recipe deleted!");
             }
         }
