@@ -10,8 +10,6 @@ var P_EndServer;
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
         port = 8100;
     let databaseUrl = "mongodb+srv://epicUser:gaminggaming@superomegaepicgis.gadfy.mongodb.net"; // the mongodb url
-    // User Login setup
-    let dbUserNew;
     // Mongo Collections setup
     let dbUserCollection;
     let dbRecipeCollection;
@@ -59,14 +57,31 @@ var P_EndServer;
                 // checks if username & password match (if there's 1 matching)
                 let dbUserRegistry = await dbUserCollection.find({ "username": nameLogin, "password": pwLogin }).limit(1).count(true);
                 if (dbUserRegistry == 1) { // if user exists, logs user in
-                    dbUserNew = { username: nameLogin, password: pwLogin };
-                    _response.write(JSON.stringify(dbUserNew));
+                    _response.write(JSON.stringify({ username: nameLogin, password: pwLogin }));
                     console.log("Succesfully logged user in!");
                 }
                 else { // if username/password don't match, fails to log in
                     _response.write("UserFail");
                     console.log("Failed login. User doesn't exist.");
                 }
+            }
+            else if (chosenPath == "/recipesAll") {
+                console.log("Loading all recipes...");
+                let findAllCursor = dbRecipeCollection.find();
+                let resultAll = await findAllCursor.toArray();
+                console.log("Recipes found!");
+                _response.write(JSON.stringify(resultAll));
+            }
+            else if (chosenPath == "/recipesMy") {
+                console.log("Loading my recipes...");
+                let recipesMine;
+                recipesMine = await dbRecipeCollection.find({ recipeAuthor: myURL.query }).toArray();
+                console.log("Recipes found!");
+                _response.write(JSON.stringify(recipesMine));
+            }
+            else if (chosenPath == "/recipeSave") {
+                console.log("Saving recipe...");
+                dbRecipeCollection.insertOne(myURL.query);
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request

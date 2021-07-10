@@ -1,13 +1,9 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
+import * as Interface from "../server/interface";
 
 export namespace P_EndServer {
-
-    interface UserRegForm { // User login/register form entry as interface
-        username: string;
-        password: string;
-    }
     
     let port: number | string | undefined = Number(process.env.PORT); // creates port variable and configures environment port variable
     if (!port) // if there's no port, set the port to 8080 (localhost:8080 for testing)
@@ -15,8 +11,6 @@ export namespace P_EndServer {
 
     let databaseUrl: string = "mongodb+srv://epicUser:gaminggaming@superomegaepicgis.gadfy.mongodb.net"; // the mongodb url
 
-    // User Login setup
-    let dbUserNew: UserRegForm;
     // Mongo Collections setup
     let dbUserCollection: Mongo.Collection;
     let dbRecipeCollection: Mongo.Collection;
@@ -71,13 +65,27 @@ export namespace P_EndServer {
                 let dbUserRegistry: number = await dbUserCollection.find({"username": nameLogin, "password": pwLogin}).limit(1).count(true);
 
                 if (dbUserRegistry == 1) { // if user exists, logs user in
-                    dbUserNew = {username: nameLogin, password: pwLogin};
-                    _response.write(JSON.stringify(dbUserNew));
+                    _response.write(JSON.stringify({username: nameLogin, password: pwLogin}));
                     console.log("Succesfully logged user in!");
                 } else { // if username/password don't match, fails to log in
                     _response.write("UserFail");
                     console.log("Failed login. User doesn't exist.");
                 }
+            } else if (chosenPath == "/recipesAll") {
+                console.log("Loading all recipes...");
+                let findAllCursor: Mongo.Cursor = dbRecipeCollection.find();
+                let resultAll: Interface.RecipeForm[] = await findAllCursor.toArray();
+                console.log("Recipes found!");
+                _response.write(JSON.stringify(resultAll));
+            } else if (chosenPath == "/recipesMy") {
+                console.log("Loading my recipes...");
+                let recipesMine: Interface.RecipeForm[];
+                recipesMine = await dbRecipeCollection.find({recipeAuthor: myURL.query}).toArray();
+                console.log("Recipes found!");
+                _response.write(JSON.stringify(recipesMine));
+            } else if (chosenPath == "/recipeSave") {
+                console.log("Saving recipe...");
+                dbRecipeCollection.insertOne(myURL.query);
             }
         }
 
