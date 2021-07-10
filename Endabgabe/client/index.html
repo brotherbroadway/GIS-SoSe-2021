@@ -6,26 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes Login</title>
     <script defer src="script_login.js"></script>
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+    <header>
+        <div id="nav">
+            <a href="https://github.com/brotherbroadway"><img src="pfp.png" alt=""></a>
+            <div class="buttons">
+                <div class="nothere">
+                    <a href="allRecipes.html">All Recipes</a>
+                    <a href="myRecipes.html">My Recipes</a>
+                    <a href="favRecipes.html">Fav Recipes</a>
+                    <div class="urhere">
+                        <abbr title="You are here"><a href="index.html">Login</a></abbr>
+                    </div>
+                </div>
+            </div>
+            <h1>Login</h1>
         </div>
-        <div>
-            <label for="password">Password (6 characters minimum)</label>
-            <input type="password" id="password" name="password" minlength="6" required>
-        </div>
-        <div>
-            <button type="button" id="userRegisterButton">Register</button>
-            <button type="button" id="userLoginButton">Login</button>
-        </div>
-        <div">
-            <div id="serverReply"></div>
-        </div>
-    </form>
+    </header>
+    <main>
+        <form>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password (6 characters minimum)</label>
+                <input type="password" id="password" name="password" minlength="6" required>
+            </div>
+            <div>
+                <button type="button" id="userRegisterButton">Register</button>
+                <button type="button" id="userLoginButton">Login</button>
+            </div>
+            <div">
+                <div id="serverReply"></div>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
