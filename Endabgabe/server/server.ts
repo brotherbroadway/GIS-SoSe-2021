@@ -16,7 +16,6 @@ export namespace P_EndServer {
     let databaseUrl: string = "mongodb+srv://epicUser:gaminggaming@superomegaepicgis.gadfy.mongodb.net"; // the mongodb url
 
     // User Login setup
-    //let dbUserRegistryAll: UserRegForm[];
     let dbUserNew: UserRegForm;
     // Mongo Collections setup
     let dbUserCollection: Mongo.Collection;
@@ -50,71 +49,35 @@ export namespace P_EndServer {
             // checks if /html or /json path was chosen
             if (chosenPath == "/userRegister") { // path used when button is pressed to send data to the database
                 console.log("Registering user...");
-                // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameReg: string = <string> myURL.query["username"];
                 let pwReg: string = <string> myURL.query["password"];
+                // checks if user is already in database (if there is already 1)
                 let dbUserRegistry: number = await dbUserCollection.find({"username": nameReg.toString()}).limit(1).count(true);
-                // let userRegEntry: UserRegForm = {username: nameReg + "", password: pwReg + ""};
-                // let existingReg: boolean = false;
 
-                if (dbUserRegistry == 1) {
+                if (dbUserRegistry == 1) { // if user already exists, registration fails
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
-                } else {
+                } else { // if user doesn't exist already, creates a new one
                     dbUserCollection.insertOne({"username": nameReg, "password": pwReg});
                     _response.write("UserSuccess");
                     console.log("Succesfully registered a new user!");
                 }
-
-                /*for (let i: number = 0; i < dbUserRegistryAll.length; i++) { // checks if registered user already exists
-                    if (userRegEntry.username == dbUserRegistryAll[i].username) {
-                        existingReg = true;
-                    }
-                }
-                if (existingReg == false) { // if user doesn't exist already, creates new user
-                    dbUserCollection.insertOne({"username": nameReg, "password": pwReg});
-                    _response.write("UserSuccess");
-                    console.log("Succesfully registered a new user!");
-                } else { // if user exists already, return failed registration
-                    _response.write("UserFail");
-                    console.log("Failed registration. User already exists.");
-                }*/
 
             } else if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
                 console.log("Logging user in...");
-                // dbUserRegistryAll = await dbUserCollection.find().toArray();
                 let nameLogin: string = <string> myURL.query["username"];
                 let pwLogin: string = <string> myURL.query["password"];
+                // checks if username & password match (if there's 1 matching)
                 let dbUserRegistry: number = await dbUserCollection.find({"username": nameLogin, "password": pwLogin}).limit(1).count(true);
-                if (dbUserRegistry == 1) {
-                    dbUserNew = {username: nameLogin, password: pwLogin}
-                    _response.write(JSON.stringify(dbUserNew));
-                    console.log("Succesfully logged user in!");
-                } else {
-                    _response.write("UserFail");
-                    console.log("Failed login. User doesn't exist.");
-                }
-                /*let confirmedName: boolean = false;
-                let confirmedPW: boolean = false;
 
-                for (let i: number = 0; i < dbUserRegistryAll.length; i++) { // checks if username & password exist in database collection
-                    if (dbUserRegistryAll[i].username == nameLogin) {
-                        confirmedName = true;
-                        if (dbUserRegistryAll[i].password == pwLogin) {
-                        confirmedPW = true;
-                        dbUserNew = {username: nameLogin, password: pwLogin};
-                        }
-                    }
-                }
-                if ((confirmedName == true) && (confirmedPW == true)) { // if username & password match to entry, logs them in
+                if (dbUserRegistry == 1) { // if user exists, logs user in
+                    dbUserNew = {username: nameLogin, password: pwLogin};
                     _response.write(JSON.stringify(dbUserNew));
                     console.log("Succesfully logged user in!");
-                } else { // else spits out error
+                } else { // if username/password don't match, fails to log in
                     _response.write("UserFail");
                     console.log("Failed login. User doesn't exist.");
                 }
-                confirmedName = false;
-                confirmedPW = false;*/
             }
         }
 
@@ -128,7 +91,11 @@ export namespace P_EndServer {
         await dbClient.connect(); // connects to mongo client
         dbUserCollection = dbClient.db("Recipes").collection("UserReg"); // checks registered user collection
         dbRecipeCollection = dbClient.db("Recipes").collection("AllRecipes"); // checks all recipes collection
-        console.log("Connection to UserReg", dbUserCollection != undefined);
-        console.log("Connection to AllRecipes", dbRecipeCollection != undefined);
+        if (dbUserCollection != undefined) {
+            console.log("Connection to 'UserReg' established.");
+        } else console.log("Connection to 'UserReg' could not be established.");
+        if (dbRecipeCollection != undefined) {
+            console.log("Connection to 'AllRecipes' established.");
+        } else console.log("Connection to 'AllRecipes' could not be established.");
     }
 }
