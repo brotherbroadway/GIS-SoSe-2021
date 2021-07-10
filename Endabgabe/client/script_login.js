@@ -5,7 +5,7 @@ var AbgabeEnd;
         username: string;
         password: string;
     }*/
-    // let sendToURL: string = "http://localhost:8100"; // private testing 001
+    // let sendToURL: string = "http://localhost:8100"; // private testing 002
     let sendToURL = "https://superomegaepicapp.herokuapp.com"; // public testing
     // these are for error msg output
     // let dataLog: HTMLDivElement = <HTMLDivElement> document.getElementById("serverReply");
