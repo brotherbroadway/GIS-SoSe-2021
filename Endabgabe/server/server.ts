@@ -88,11 +88,11 @@ export namespace AbgabeEnd {
                 let dbRecEdit: number = await dbRecipeCollection.find({"recipeName": testEdit}).limit(1).count(true);
                 if (dbRecEdit == 1) {
                     console.log("Editing recipe...");
-                    console.log(myURL.query);
+                    // console.log(myURL.query);
                     let queryEdit: string = <string> JSON.stringify(myURL.query);
                     let qEdit: string = <string> queryEdit.split(',"originName')[0];
                     qEdit += "}";
-                    console.log(qEdit);
+                    // console.log(qEdit);
                     let editedQuery: Url.UrlWithParsedQuery = <Url.UrlWithParsedQuery> JSON.parse(qEdit);
                     dbRecipeCollection.findOneAndReplace({"recipeName": testEdit}, editedQuery);
                     console.log("Recipe edited!");
@@ -105,6 +105,24 @@ export namespace AbgabeEnd {
                 console.log("Deleting recipe...");
                 dbRecipeCollection.findOneAndDelete({"recipeName": myURL.query.recipeName});
                 _response.write("Recipe deleted!");
+            } else if (chosenPath == "/recipeFav") {
+                console.log("Favoriting recipe...");
+                let allFavs: RecipeForm[] = new Array();
+                let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
+                let userReg: UserRegForm = await dbUserCollection.findOne({"user": myURL.query.crntUser});
+                let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
+                
+                allFavs = userReg.favRecipes;
+                if (allFavs != undefined) {
+                    allFavs.push(newFav);
+                    console.log("Favorites of '" + userReg + "' updated!");
+
+                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": allFavs}});
+                } else {
+                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": [newFav]}});
+                }
+                console.log("User updated to: " + JSON.stringify(userUpdatedReg));
+                _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.")
             }
         }
 
