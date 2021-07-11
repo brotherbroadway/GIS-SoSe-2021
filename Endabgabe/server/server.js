@@ -122,18 +122,25 @@ var AbgabeEnd;
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
                 let allFavs = new Array();
                 let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser });
-                let userUpdatedReg;
-                allFavs = userReg.favRecipes;
-                if (allFavs != undefined) {
-                    allFavs.push(newFav);
-                    console.log("Favorites of '" + userReg + "' updated!");
-                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": allFavs } });
+                // to check if recipe is already fav'd
+                let dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": myURL.query._id.toString() }).limit(1).count(true);
+                if (dbRecipeCheck == 1) {
+                    _response.write("FailFav");
                 }
-                else {
-                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
+                else { // if not, adds it to user's favorite recipes
+                    let userUpdatedReg;
+                    allFavs = userReg.favRecipes;
+                    if (allFavs != undefined) {
+                        allFavs.push(newFav);
+                        console.log("Favorites of '" + userReg + "' updated!");
+                        userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": allFavs } });
+                    }
+                    else {
+                        userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
+                    }
+                    console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
+                    _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
                 }
-                console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
-                _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request
