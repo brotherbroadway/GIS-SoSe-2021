@@ -154,7 +154,7 @@ var AbgabeEnd;
                     }
                 }
                 dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": prevFav } });
-                _response.write(delRecipeName + "successfully deleted.");
+                _response.write(delRecipeName.toString() + "successfully deleted.");
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request

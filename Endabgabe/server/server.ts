@@ -151,7 +151,7 @@ export namespace AbgabeEnd {
                     }
                 }
                 dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": prevFav}});
-                _response.write(delRecipeName + "successfully deleted.");
+                _response.write(delRecipeName.toString() + "successfully deleted.");
             }
         }
 
