@@ -1,12 +1,12 @@
 body {
-    background-image: url("bg.png");
+    background-image: url("wood_bg.jpg");
     background-repeat: repeat;
-    background-size: 3%;
+    background-size: 50%;
     font-family: sans-serif;
 }
 
 #nav {
-    background-color: deepskyblue;
+    background-color: rgb(81, 25, 7);
     position: fixed;
     top: 0;
     right: 0;
@@ -58,7 +58,7 @@ body {
 
 .nothere a:hover {
     background-color: rgb(32, 32, 34);
-    color: rgb(58, 182, 228);
+    color: rgb(255,114,71);
 }
 
 .urhere a {
@@ -68,8 +68,8 @@ body {
 }
 
 .urhere a:hover {
-    background-color: deepskyblue;
-    color: rgb(32, 32, 34);
+    background-color: rgb(81, 25, 7);
+    color: rgb(255,114,71);
     text-shadow: 0px 0px 2px rgb(32, 32, 34);
 }
 
@@ -80,9 +80,206 @@ h1 {
     padding-left: 310px;
 }
 
-form {
+main {
     color: white;
     text-shadow: 3px 3px 3px black;
     font-weight: bold;
-    margin-top: 5%;
+    margin-top: 2%;
+}
+
+#loginDiv {
+    display: grid;
+    background-color: rgb(34,34,34);
+    border: 3px solid rgb(255,114,71);
+    opacity: 0.9;
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px white;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 100px;
+    width: 600px;
+}
+
+.usernameDiv {
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+.pwDiv {
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.regBttnDiv button {
+    background-color: rgb(255,114,71);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    transition: 0.25s ease-in-out 0s;
+}
+
+.regBttnDiv button:hover {
+    background-color: black;
+    color: rgb(255,114,71);
+    transition: 0.25s ease-in-out 0s;
+}
+
+#DisplayAllHere {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: auto;
+    margin-top: auto;
+}
+
+#yourRecipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: auto;
+    margin-top: auto;
+}
+
+#fancyRecipe {
+    display: flexbox;
+    background-color: rgb(81, 26 ,28);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+    border-radius: 50px;
+    min-width: 12%;
+    margin-top: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+#fancyRecipe button {
+    background-color: rgb(54, 24, 15);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-style: italic;
+    font-size: 24px;
+    transition: 0.35s ease-in-out 0s;
+}
+
+#fancyRecipe button:hover {
+    background-color: rgb(255,114,71);
+    transition: 0.35s ease-in-out 0s;
+}
+
+h3 {
+    background-color: black;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+    border-radius: 15px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+}
+
+#createRecipe {
+    background-color: rgb(34,34,34);
+    border: 3px solid rgb(255,114,71);
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px white;
+    margin-top: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    width: 500px;
+}
+
+#createRecipe div {
+    margin-bottom: 10px;
+}
+
+#createRecipe button {
+    background-color: rgb(255,114,71);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    transition: 0.25s ease-in-out 0s;
+}
+
+#createRecipe button:hover {
+    background-color: black;
+    color: rgb(255,114,71);
+    transition: 0.25s ease-in-out 0s;
+}
+
+h2 {
+    font-size: 32px;
+    text-align: center;
+}
+
+#errorMsg {
+    justify-content: center;
+    background-color: rgb(34,34,34);
+    border: 10px solid red;
+    color: red;
+    font-size: 24px;
+    opacity: 0.95;
+    text-align: center;
+    font-weight: bolder;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px black;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 25px;
+    width: 300px;
 }
