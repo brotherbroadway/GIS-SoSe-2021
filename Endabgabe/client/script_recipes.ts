@@ -40,10 +40,6 @@ namespace AbgabeEnd {
         console.log(_url);
 
         let loggedinUser: string = sessionStorage.getItem("ssnUser");
-        console.log(sessionStorage.getItem("ssnUser"));
-        if (sessionStorage.getItem("ssnUser") == null) {
-            sessionStorage.clear();
-        }
         let allResponse: Response = await fetch(_url);
         let allReply: RecipeForm[] = await allResponse.json();
         console.log("Logged in user: " + loggedinUser);
