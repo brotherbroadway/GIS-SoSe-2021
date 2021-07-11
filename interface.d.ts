@@ -1,4 +1,5 @@
 interface RecipeForm { // Recipe form entry as interface
+    _id: string;
     recipeName: string;
     ingredient1: string;
     ingredient2: string;
