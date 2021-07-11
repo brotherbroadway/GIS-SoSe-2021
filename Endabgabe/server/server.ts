@@ -89,8 +89,8 @@ export namespace AbgabeEnd {
                 if (dbRecEdit == 1) {
                     console.log("Editing recipe...");
                     console.log(myURL.query);
-                    let queryEdit: string = <string> myURL.query.toString();
-                    let qEdit: string = <string> queryEdit.split("&originName")[0];
+                    let queryEdit: string = <string> JSON.stringify(myURL.query);
+                    let qEdit: string = <string> queryEdit.split("originName")[0];
                     console.log(qEdit);
                     let editedQuery: Url.UrlWithParsedQuery = <Url.UrlWithParsedQuery> JSON.parse(qEdit);
                     dbRecipeCollection.findOneAndReplace({"recipeName": testEdit}, editedQuery);
