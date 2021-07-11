@@ -40,7 +40,7 @@ namespace AbgabeEnd {
             let dataResponse: Response = await fetch(_url);
             let dataReply: string = await dataResponse.text();
             sessionStorage.clear();
-            if (dataReply != "UserFail") { // if reply went through correclty, adds user to sessionStorage
+            if (dataReply == "UserSucess") { // if reply went through correclty, adds user to sessionStorage
                 sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
                 window.open("allRecipes.html", "_self");
             } else { // else warns them
@@ -62,7 +62,7 @@ namespace AbgabeEnd {
             let dataResponse: Response = await fetch(_url);
             let dataReply: string = await dataResponse.text();
             sessionStorage.clear();
-            if (dataReply != "UserFail") { // if user exists in database, adds user to sessionStorage
+            if (dataReply == "UserSucess") { // if user exists in database, adds user to sessionStorage
                 sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
                 window.open("allRecipes.html", "_self");
             } else { // else wanrs them
