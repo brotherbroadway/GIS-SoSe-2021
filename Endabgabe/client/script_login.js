@@ -39,7 +39,7 @@ var AbgabeEnd;
             let dataResponse = await fetch(_url);
             let dataReply = await dataResponse.text();
             sessionStorage.clear();
-            if (dataReply == "UserSucess") { // if reply went through correclty, adds user to sessionStorage
+            if (dataReply == "UserSuccess") { // if reply went through correclty, adds user to sessionStorage
                 sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
                 window.open("allRecipes.html", "_self");
             }
@@ -62,11 +62,13 @@ var AbgabeEnd;
             let dataResponse = await fetch(_url);
             let dataReply = await dataResponse.text();
             sessionStorage.clear();
-            if (dataReply == "UserSucess") { // if user exists in database, adds user to sessionStorage
+            if (dataReply == "UserSuccess") { // if user exists in database, adds user to sessionStorage
+                console.log("SUCCESS");
                 sessionStorage.setItem("ssnUser", dataForm.get("username").toString()); // ssn = session
                 window.open("allRecipes.html", "_self");
             }
             else { // else wanrs them
+                console.log("FAIL");
                 window.alert("Username/password doesn't exist!");
             }
         }

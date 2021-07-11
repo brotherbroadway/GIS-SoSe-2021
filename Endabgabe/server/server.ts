@@ -72,9 +72,13 @@ export namespace AbgabeEnd {
                 let dbUserRegistry: number = await dbUserCollection.find({"username": nameLogin, "password": pwLogin}).limit(1).count(true);
 
                 if (dbUserRegistry == 1) { // if user exists, logs user in
+                    if (myURL.query["username"] != null) {
+                        if (myURL.query["password"] != null) {
+                            _response.write("UserSuccess");
+                            console.log("Succesfully logged user in!");
+                        }
+                    }
                     // _response.write(JSON.stringify({username: nameLogin, password: pwLogin}));
-                    _response.write("UserSuccess");
-                    console.log("Succesfully logged user in!");
                 } else { // if username/password don't match, fails to log in
                     _response.write("UserFail");
                     console.log("Failed login. User doesn't exist.");
