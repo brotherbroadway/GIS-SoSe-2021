@@ -86,10 +86,9 @@ var AbgabeEnd;
                 if (dbRecEdit == 1) {
                     console.log("Editing recipe...");
                     let queryEdit = myURL.query.toString();
-                    let qEdit;
-                    qEdit = queryEdit.split("?originName")[0];
+                    let qEdit = queryEdit.split("?originName")[0];
                     console.log(qEdit);
-                    let editedQuery = JSON.parse(queryEdit);
+                    let editedQuery = JSON.parse(qEdit);
                     dbRecipeCollection.findOneAndReplace({ "recipeName": testEdit }, editedQuery);
                     console.log("Recipe edited!");
                 }
