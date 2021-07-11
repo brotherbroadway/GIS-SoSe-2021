@@ -142,16 +142,14 @@ export namespace AbgabeEnd {
                 let prevFav: RecipeForm[];
                 console.log(myURL.query);
                 prevFav = userReg.favRecipes;
-                let delRecipeName: string;
 
                 for (let i: number = 0; i < prevFav.length; i++) {
                     if (myURL.query._id == prevFav[i]._id) {
-                        delRecipeName = prevFav[i].recipeName.toString();
                         prevFav.splice(i, 1);
                     }
                 }
                 dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": prevFav}});
-                _response.write(delRecipeName + "successfully deleted.");
+                _response.write("Deletion successfully.");
             }
         }
 

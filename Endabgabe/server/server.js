@@ -146,15 +146,13 @@ var AbgabeEnd;
                 let prevFav;
                 console.log(myURL.query);
                 prevFav = userReg.favRecipes;
-                let delRecipeName;
                 for (let i = 0; i < prevFav.length; i++) {
                     if (myURL.query._id == prevFav[i]._id) {
-                        delRecipeName = prevFav[i].recipeName.toString();
                         prevFav.splice(i, 1);
                     }
                 }
                 dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": prevFav } });
-                _response.write(delRecipeName + "successfully deleted.");
+                _response.write("Deletion successfully.");
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request
