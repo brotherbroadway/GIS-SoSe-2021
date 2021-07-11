@@ -121,26 +121,40 @@ var AbgabeEnd;
                 console.log("Favoriting recipe...");
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
                 let allFavs = new Array();
-                let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser });
+                let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser.toString() });
                 // to check if recipe is already fav'd
-                let dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": myURL.query._id.toString() }).count(true);
-                if (dbRecipeCheck >= 1) {
+                // let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav]}).count(true);
+                /*if (dbRecipeCheck >= 1) {
                     console.log("Failed. Recipe already favorited.");
                     _response.write("FailFav");
+                } else*/ // if not, adds it to user's favorite recipes
+                let userUpdatedReg;
+                allFavs = userReg.favRecipes;
+                if (allFavs != undefined) {
+                    allFavs.push(newFav);
+                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": allFavs } });
                 }
-                else { // if not, adds it to user's favorite recipes
-                    let userUpdatedReg;
-                    allFavs = userReg.favRecipes;
-                    if (allFavs != undefined) {
-                        allFavs.push(newFav);
-                        userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": allFavs } });
-                    }
-                    else {
-                        userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
-                    }
-                    console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
-                    _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
+                else {
+                    userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
                 }
+                console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
+                _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
+            }
+            else if (chosenPath == "/recipeFavDel") {
+                console.log("Deleting a favorite...");
+                let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser.toString() });
+                let prevFav;
+                console.log(myURL.query);
+                prevFav = userReg.favRecipes;
+                let delRecipeName;
+                for (let i = 0; i < prevFav.length; i++) {
+                    if (myURL.query._id == prevFav[i]._id) {
+                        delRecipeName = prevFav[i].recipeName;
+                        prevFav.splice(i, 1);
+                    }
+                }
+                dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": prevFav } });
+                _response.write(delRecipeName + "successfully deleted.");
             }
         }
         // _response.write(_request.url); // what gets returned for the response to the request
