@@ -53,8 +53,8 @@ export namespace AbgabeEnd {
                 if (dbUserRegistry == 1) { // if user already exists, registration fails
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
-                } else if (nameReg != null) {
-                    if (pwReg != null) { // if user doesn't exist already, creates a new one
+                } else if (nameReg.toString() != "") {
+                    if (pwReg.toString() != "") { // if user doesn't exist already, creates a new one
                         dbUserCollection.insertOne({"username": nameReg, "password": pwReg});
                         _response.write("UserSuccess");
                         console.log("Succesfully registered a new user!");
