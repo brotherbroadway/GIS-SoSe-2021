@@ -45,8 +45,8 @@ var AbgabeEnd;
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
                 }
-                else if (nameReg.toString().length > 0) {
-                    if (pwReg.toString().length > 0) { // if user doesn't exist already, creates a new one
+                else if (myURL.query["username"]) {
+                    if (myURL.query["password"]) { // if user doesn't exist already, creates a new one
                         dbUserCollection.insertOne({ "username": nameReg, "password": pwReg });
                         _response.write("UserSuccess");
                         console.log("Succesfully registered a new user!");
