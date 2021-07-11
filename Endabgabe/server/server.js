@@ -127,7 +127,11 @@ var AbgabeEnd;
                 for (let i = 0; i < userReg.favRecipes.length; i++) {
                     dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i] }).count(true);
                 }
-                if (dbRecipeCheck < 1) {
+                if (dbRecipeCheck >= 1) {
+                    console.log("Failed. Recipe already favorited.");
+                    _response.write("FailFav");
+                }
+                else { // if not, send failed request
                     let userUpdatedReg;
                     allFavs = userReg.favRecipes;
                     if (allFavs != undefined) {
@@ -139,10 +143,6 @@ var AbgabeEnd;
                     }
                     console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
                     _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
-                }
-                else { // if not, send failed request
-                    console.log("Failed. Recipe already favorited.");
-                    _response.write("FailFav");
                 }
             }
             else if (chosenPath == "/recipeFavDel") {

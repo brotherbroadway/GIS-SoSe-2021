@@ -120,12 +120,15 @@ export namespace AbgabeEnd {
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser.toString()});
-                let dbRecipeCheck: number
+                let dbRecipeCheck: number;
                 // to check if recipe is already fav'd
                 for (let i: number = 0; i < userReg.favRecipes.length; i++){
                     dbRecipeCheck = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i]}).count(true);
                 }
-                if (dbRecipeCheck < 1) {
+                if (dbRecipeCheck >= 1) {
+                    console.log("Failed. Recipe already favorited.");
+                    _response.write("FailFav");
+                } else {// if not, send failed request
                     let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
                     allFavs = userReg.favRecipes;
                     if (allFavs != undefined) {
@@ -136,9 +139,6 @@ export namespace AbgabeEnd {
                     }
                     console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
                     _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
-                } else {// if not, send failed request
-                    console.log("Failed. Recipe already favorited.");
-                    _response.write("FailFav");
                 }
             } else if (chosenPath == "/recipeFavDel") {
                 console.log("Deleting a favorite...");
