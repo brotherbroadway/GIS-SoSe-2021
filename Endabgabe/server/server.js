@@ -41,8 +41,8 @@ var AbgabeEnd;
                 let pwReg = myURL.query["password"];
                 // checks if user is already in database (if there is already 1)
                 let dbUserRegistry = await dbUserCollection.find({ "username": nameReg.toString() }).limit(1).count(true);
-                if (nameReg != undefined) {
-                    if (pwReg != undefined) {
+                if (myURL.query["username"] != undefined) {
+                    if (myURL.query["password"] != undefined) {
                         if (dbUserRegistry < 1) {
                             dbUserCollection.insertOne({ "username": nameReg, "password": pwReg });
                             _response.write("UserSuccess");
