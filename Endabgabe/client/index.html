@@ -11,14 +11,13 @@
 <body>
     <header>
         <div id="nav">
-            <a href="https://github.com/brotherbroadway"><img src="pfp.png" alt=""></a>
             <div class="buttons">
                 <div class="nothere">
                     <a href="allRecipes.html">All Recipes</a>
                     <a href="myRecipes.html">My Recipes</a>
                     <a href="favRecipes.html">Fav Recipes</a>
                     <div class="urhere">
-                        <abbr title="You are here"><a href="index.html">Login</a></abbr>
+                        <abbr title="You are here"><a id="logNav" href="index.html"></a></abbr>
                     </div>
                 </div>
             </div>
@@ -26,23 +25,25 @@
         </div>
     </header>
     <main>
-        <form>
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password (6 characters minimum)</label>
-                <input type="password" id="password" name="password" minlength="6" required>
-            </div>
-            <div>
-                <button type="button" id="userRegisterButton">Register</button>
-                <button type="button" id="userLoginButton">Login</button>
-            </div>
-            <div">
-                <div id="serverReply"></div>
-            </div>
-        </form>
+        <div id="loginDiv">
+            <form>
+                <div class="usernameDiv">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="pwDiv">
+                    <label for="password">Password (6 characters minimum)</label>
+                    <input type="password" id="password" name="password" minlength="6" required>
+                </div>
+                <div class="regBttnDiv">
+                    <button type="button" id="userRegisterButton">Register</button>
+                    <button type="button" id="userLoginButton">Login</button>
+                </div>
+                <div">
+                    <div id="serverReply"></div>
+                </div>
+            </form>
+        </div>
     </main>
 </body>
 </html>
