@@ -41,16 +41,22 @@ var AbgabeEnd;
                 let pwReg = myURL.query["password"];
                 // checks if user is already in database (if there is already 1)
                 let dbUserRegistry = await dbUserCollection.find({ "username": nameReg.toString() }).limit(1).count(true);
-                console.log(nameReg);
-                console.log(pwReg);
+                console.log("nameReg: " + nameReg);
+                console.log("pwReg: " + pwReg);
                 if (dbUserRegistry == 1) { // if user already exists, registration fails
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
                 }
-                else { // if user doesn't exist already, creates a new one
-                    dbUserCollection.insertOne({ "username": nameReg, "password": pwReg });
-                    _response.write("UserSuccess");
-                    console.log("Succesfully registered a new user!");
+                else if (nameReg != null) {
+                    if (pwReg != null) { // if user doesn't exist already, creates a new one
+                        dbUserCollection.insertOne({ "username": nameReg, "password": pwReg });
+                        _response.write("UserSuccess");
+                        console.log("Succesfully registered a new user!");
+                    }
+                }
+                else {
+                    _response.write("UserFail");
+                    console.log("Failed registration. User already exists.");
                 }
             }
             else if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
