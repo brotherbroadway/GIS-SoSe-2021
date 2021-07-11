@@ -41,8 +41,6 @@ var AbgabeEnd;
                 let pwReg = myURL.query["password"];
                 // checks if user is already in database (if there is already 1)
                 let dbUserRegistry = await dbUserCollection.find({ "username": nameReg.toString() }).limit(1).count(true);
-                console.log("nameReg: " + nameReg);
-                console.log("pwReg: " + pwReg);
                 if (dbUserRegistry == 1) { // if user already exists, registration fails
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
@@ -58,6 +56,8 @@ var AbgabeEnd;
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
                 }
+                _response.write("UserFail");
+                console.log("Failed registration. User doesn't exist.");
             }
             else if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
                 console.log("Logging user in...");
@@ -74,24 +74,24 @@ var AbgabeEnd;
                     console.log("Failed login. User doesn't exist.");
                 }
             }
-            else if (chosenPath == "/recipesAll") {
+            else if (chosenPath == "/recipesAll") { // when allRecipes page is being loaded
                 console.log("Loading all recipes...");
                 let findAllCursor = dbRecipeCollection.find();
                 let resultAll = await findAllCursor.toArray();
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(resultAll));
             }
-            else if (chosenPath == "/recipesMy") {
+            else if (chosenPath == "/recipesMy") { // when myRecipes page is being loaded
                 console.log("Loading my recipes...");
                 let recipesMine;
                 recipesMine = await dbRecipeCollection.find({ "recipeAuthor": myURL.query.loggedUser }).toArray();
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(recipesMine));
             }
-            else if (chosenPath == "/recipeSave") {
+            else if (chosenPath == "/recipeSave") { // when a recipe is being created
                 let testEdit = myURL.query["originName"];
                 let dbRecEdit = await dbRecipeCollection.find({ "recipeName": testEdit }).limit(1).count(true);
-                if (dbRecEdit == 1) {
+                if (dbRecEdit == 1) { // for editing a recipe
                     console.log("Editing recipe...");
                     // console.log(myURL.query);
                     let queryEdit = JSON.stringify(myURL.query);
@@ -102,18 +102,18 @@ var AbgabeEnd;
                     dbRecipeCollection.findOneAndReplace({ "recipeName": testEdit }, editedQuery);
                     console.log("Recipe edited!");
                 }
-                else {
+                else { // for regular submitting
                     console.log("Saving recipe...");
                     dbRecipeCollection.insertOne(myURL.query);
                     console.log("Recipe saved!");
                 }
             }
-            else if (chosenPath == "/recipeDel") {
+            else if (chosenPath == "/recipeDel") { // deleting a created recipe
                 console.log("Deleting recipe...");
                 dbRecipeCollection.findOneAndDelete({ "recipeName": myURL.query.recipeName });
                 _response.write("Recipe deleted!");
             }
-            else if (chosenPath == "/recipesAllFav") {
+            else if (chosenPath == "/recipesAllFav") { // when favRecipes is being loaded
                 console.log("Loading your favorite recipes...");
                 let thatUser = await dbUserCollection.findOne({ "username": myURL.query.loggedUser.toString() });
                 let thoseFavs = thatUser.favRecipes;
@@ -125,7 +125,7 @@ var AbgabeEnd;
                     _response.write("FavFail");
                 }
             }
-            else if (chosenPath == "/recipeFav") {
+            else if (chosenPath == "/recipeFav") { // when favoriting a recipe in the allRecipes page
                 console.log("Favoriting recipe...");
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
                 let allFavs = new Array();
@@ -135,11 +135,11 @@ var AbgabeEnd;
                 if (dbRecipeCheck < 1) {
                     let userUpdatedReg;
                     allFavs = userReg.favRecipes;
-                    if (allFavs != undefined) {
+                    if (allFavs != undefined) { // if this is the first recipe favorited
                         allFavs.push(newFav);
                         userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": allFavs } });
                     }
-                    else {
+                    else { // or just another one favorited
                         userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
                     }
                     console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
@@ -150,14 +150,14 @@ var AbgabeEnd;
                     _response.write("FailFav");
                 }
             }
-            else if (chosenPath == "/recipeFavDel") {
+            else if (chosenPath == "/recipeFavDel") { // deleting a favorited recipe on the favRecipes page
                 console.log("Deleting a favorite...");
                 let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser.toString() });
                 let prevFav;
                 console.log(myURL.query);
                 prevFav = userReg.favRecipes;
                 let delRecipeName;
-                for (let i = 0; i < prevFav.length; i++) {
+                for (let i = 0; i < prevFav.length; i++) { // removing said recipe
                     if (myURL.query._id == prevFav[i]._id) {
                         delRecipeName = prevFav[i].recipeName;
                         prevFav.splice(i, 1);
@@ -170,6 +170,7 @@ var AbgabeEnd;
         // _response.write(_request.url); // what gets returned for the response to the request
         _response.end(); // ends the response and sends it
     }
+    // connecting to the MongoDB function
     async function connectDB(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let dbClient = new Mongo.MongoClient(databaseUrl, options);
