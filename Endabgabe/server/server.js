@@ -107,9 +107,9 @@ var AbgabeEnd;
             }
             else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
-                let allFavs = new Array();
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
-                let userReg = await dbUserCollection.findOne({ "user": myURL.query.crntUser });
+                let allFavs = new Array();
+                let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser });
                 let userUpdatedReg;
                 allFavs = userReg.favRecipes;
                 if (allFavs != undefined) {

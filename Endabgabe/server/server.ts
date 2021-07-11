@@ -107,9 +107,9 @@ export namespace AbgabeEnd {
                 _response.write("Recipe deleted!");
             } else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
-                let allFavs: RecipeForm[] = new Array();
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
-                let userReg: UserRegForm = await dbUserCollection.findOne({"user": myURL.query.crntUser});
+                let allFavs: RecipeForm[] = new Array();
+                let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser});
                 let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
                 
                 allFavs = userReg.favRecipes;
