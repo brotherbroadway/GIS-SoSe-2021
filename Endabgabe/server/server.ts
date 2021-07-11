@@ -57,8 +57,7 @@ export namespace AbgabeEnd {
                     console.log("Succesfully registered a new user!");
                 }
 
-            } 
-            if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
+            } else if (chosenPath == "/userLogin") { // path used when button is pressed to show data from the database
                 console.log("Logging user in...");
                 let nameLogin: string = <string> myURL.query["username"];
                 let pwLogin: string = <string> myURL.query["password"];
@@ -72,22 +71,19 @@ export namespace AbgabeEnd {
                     _response.write("UserFail");
                     console.log("Failed login. User doesn't exist.");
                 }
-            } 
-            if (chosenPath == "/recipesAll") {
+            } else if (chosenPath == "/recipesAll") {
                 console.log("Loading all recipes...");
                 let findAllCursor: Mongo.Cursor = dbRecipeCollection.find();
                 let resultAll: RecipeForm[] = await findAllCursor.toArray();
                 console.log("All recipes found!");
                 _response.write(JSON.stringify(resultAll));
-            } 
-            if (chosenPath == "/recipesMy") {
+            } else if (chosenPath == "/recipesMy") {
                 console.log("Loading my recipes...");
                 let recipesMine: RecipeForm[];
                 recipesMine = await dbRecipeCollection.find({"recipeAuthor": myURL.query.loggedUser}).toArray();
                 console.log("My recipes found!");
                 _response.write(JSON.stringify(recipesMine));
-            } 
-            if (chosenPath == "/recipeSave") {
+            } else if (chosenPath == "/recipeSave") {
                 let testEdit: string = <string> myURL.query["originName"];
                 let dbRecEdit: number = await dbRecipeCollection.find({"recipeName": testEdit}).limit(1).count(true);
                 if (dbRecEdit == 1) {
@@ -105,13 +101,11 @@ export namespace AbgabeEnd {
                     dbRecipeCollection.insertOne(myURL.query);
                     console.log("Recipe saved!");
                 }
-            } 
-            if (chosenPath == "/recipeDel") {
+            } else if (chosenPath == "/recipeDel") {
                 console.log("Deleting recipe...");
                 dbRecipeCollection.findOneAndDelete({"recipeName": myURL.query.recipeName});
                 _response.write("Recipe deleted!");
-            } 
-            if (chosenPath == "/recipesAllFav") {
+            } else if (chosenPath == "/recipesAllFav") {
                 console.log("Loading your favorite recipes...");
                 let thatUser: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.loggedUser.toString()});
                 let thoseFavs: RecipeForm[] = thatUser.favRecipes;
@@ -121,24 +115,22 @@ export namespace AbgabeEnd {
                 } else {
                     _response.write("FavFail");
                 }
-            }
-            if (chosenPath == "/recipeFav") {
+            } else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser.toString()});
                 let dbRecipeCheck: number;
-                console.log("Favoritism in progress...");
                 // to check if recipe is already fav'd
-                for (let i: number = 0; i < userReg.favRecipes.length; i++) {
+                for (let i: number = 0; i < userReg.favRecipes.length; i++){
                     dbRecipeCheck = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i]}).count(true);
                     console.log(dbRecipeCheck);
                     console.log([newFav][i]);
                 }
-                if (dbRecipeCheck >= 1) {
+                if (dbRecipeCheck >= 1) { // if it is, send failed msg
                     console.log("Failed. Recipe already favorited.");
                     _response.write("FailFav");
-                } else {// if not, send failed request
+                } else {// if not, continue
                     let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
                     allFavs = userReg.favRecipes;
                     if (allFavs != undefined) {
@@ -150,8 +142,7 @@ export namespace AbgabeEnd {
                     console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
                     _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
                 }
-            }
-            if (chosenPath == "/recipeFavDel") {
+            } else if (chosenPath == "/recipeFavDel") {
                 console.log("Deleting a favorite...");
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser.toString()});
                 let prevFav: RecipeForm[];
