@@ -121,7 +121,7 @@ export namespace AbgabeEnd {
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser});
                 // to check if recipe is already fav'd
-                let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [myURL.query._id.toString()]}).limit(1).count(true);
+                let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav]}).limit(1).count(true);
                 if (dbRecipeCheck == 1) {
                     _response.write("FailFav");
                 } else { // if not, adds it to user's favorite recipes
