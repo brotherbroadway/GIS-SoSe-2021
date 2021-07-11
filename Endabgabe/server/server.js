@@ -81,9 +81,23 @@ var AbgabeEnd;
                 _response.write(JSON.stringify(recipesMine));
             }
             else if (chosenPath == "/recipeSave") {
-                console.log("Saving recipe...");
-                dbRecipeCollection.insertOne(myURL.query);
-                console.log("Recipe saved!");
+                let testEdit = myURL.query["originName"];
+                let dbRecEdit = await dbRecipeCollection.find({ "recipeName": testEdit }).limit(1).count(true);
+                if (dbRecEdit == 1) {
+                    console.log("Editing recipe...");
+                    let queryEdit = myURL.query.toString();
+                    let qEdit;
+                    qEdit = queryEdit.split("?originName")[0];
+                    console.log(qEdit);
+                    let editedQuery = JSON.parse(queryEdit);
+                    dbRecipeCollection.findOneAndReplace({ "recipeName": testEdit }, editedQuery);
+                    console.log("Recipe edited!");
+                }
+                else {
+                    console.log("Saving recipe...");
+                    dbRecipeCollection.insertOne(myURL.query);
+                    console.log("Recipe saved!");
+                }
             }
             else if (chosenPath == "/recipeDel") {
                 console.log("Deleting recipe...");

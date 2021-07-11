@@ -84,12 +84,25 @@ export namespace AbgabeEnd {
                 console.log("Recipes found!");
                 _response.write(JSON.stringify(recipesMine));
             } else if (chosenPath == "/recipeSave") {
-                console.log("Saving recipe...");
-                dbRecipeCollection.insertOne(myURL.query);
-                console.log("Recipe saved!");
+                let testEdit: string = <string> myURL.query["originName"];
+                let dbRecEdit: number = await dbRecipeCollection.find({"recipeName": testEdit}).limit(1).count(true);
+                if (dbRecEdit == 1) {
+                    console.log("Editing recipe...");
+                    let queryEdit: string = myURL.query.toString();
+                    let qEdit: string;
+                    qEdit = queryEdit.split("?originName")[0];
+                    console.log(qEdit);
+                    let editedQuery: Url.UrlWithParsedQuery = JSON.parse(queryEdit);
+                    dbRecipeCollection.findOneAndReplace({"recipeName": testEdit}, editedQuery);
+                    console.log("Recipe edited!");
+                } else {
+                    console.log("Saving recipe...");
+                    dbRecipeCollection.insertOne(myURL.query);
+                    console.log("Recipe saved!");
+                }
             } else if (chosenPath == "/recipeDel") {
                 console.log("Deleting recipe...");
-                dbRecipeCollection.findOneAndDelete({"recipeName": myURL.query.recipeName})
+                dbRecipeCollection.findOneAndDelete({"recipeName": myURL.query.recipeName});
                 _response.write("Recipe deleted!");
             }
         }
