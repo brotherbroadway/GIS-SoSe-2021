@@ -126,6 +126,8 @@ var AbgabeEnd;
                 // to check if recipe is already fav'd
                 for (let i = 0; i < userReg.favRecipes.length; i++) {
                     dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i] }).count(true);
+                    console.log(dbRecipeCheck);
+                    console.log([newFav][i]);
                 }
                 if (dbRecipeCheck >= 1) {
                     console.log("Failed. Recipe already favorited.");
