@@ -41,6 +41,8 @@ var AbgabeEnd;
                 let pwReg = myURL.query["password"];
                 // checks if user is already in database (if there is already 1)
                 let dbUserRegistry = await dbUserCollection.find({ "username": nameReg.toString() }).limit(1).count(true);
+                console.log(nameReg);
+                console.log(pwReg);
                 if (dbUserRegistry == 1) { // if user already exists, registration fails
                     _response.write("UserFail");
                     console.log("Failed registration. User already exists.");
