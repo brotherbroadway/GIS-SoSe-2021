@@ -5,14 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipes</title>
-    <script defer src="script_recipes.js"></script>
+    <script defer src="script_my.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Recipe Collection</h1>
     <header>
         <div id="nav">
-            <a href="https://github.com/brotherbroadway"><img src="pfp.png" alt=""></a>
             <div class="buttons">
                 <div class="nothere">
                     <a href="allRecipes.html">All Recipes</a>
@@ -20,11 +18,70 @@
                         <abbr title="You are here"><a href="myRecipes.html">My Recipes</a></abbr>
                     </div>
                     <a href="favRecipes.html">Fav Recipes</a>
-                    <a href="index.html">Login</a>
+                    <a id="logNav" href="index.html"></a>
                 </div>
             </div>
-            <h1>My Recipes</h1>
+            <h1 id="recipeHeader"></h1>
         </div>
     </header>
+    <main>
+        <div id="createRecipe">
+            <h2>Create a recipe</h2>
+            <form>
+                <div>
+                    <label for="recipeName">Recipe name</label>
+                    <input type="text" id="recipeName" name="recipeName" required>
+                </div>
+                <div>
+                    <label for="ingredient1">Ingredient #1</label>
+                    <input type="text" id="ingredient1" name="ingredient1" required>
+                </div>
+                <div>
+                    <label for="ingredient2">Ingredient #2</label>
+                    <input type="text" id="ingredient2" name="ingredient2" required>
+                </div>
+                <div>
+                    <label for="ingredient3">Ingredient #3</label>
+                    <input type="text" id="ingredient3" name="ingredient3" required>
+                </div>
+                <div>
+                    <label for="ingredient4">Ingredient #4</label>
+                    <input type="text" id="ingredient4" name="ingredient4">
+                </div>
+                <div>
+                    <label for="ingredient5">Ingredient #5</label>
+                    <input type="text" id="ingredient5" name="ingredient5">
+                </div>
+                <div>
+                    <label for="ingredient6">Ingredient #6</label>
+                    <input type="text" id="ingredient6" name="ingredient6">
+                </div>
+                <div>
+                    <label for="ingredient7">Ingredient #7</label>
+                    <input type="text" id="ingredient7" name="ingredient7">
+                </div>
+                <div>
+                    <label for="ingredient8">Ingredient #8</label>
+                    <input type="text" id="ingredient8" name="ingredient8">
+                </div>
+                <div>
+                    <label for="recipeNotes">Notes for preparation</label>
+                    <input type="text" id="recipeNotes" name="recipeNotes" required>
+                </div>
+                <div>
+                    <button type="button" id="saveRecipe">Submit Recipe</button>
+                </div>
+                <div">
+                    <div id="serverReply"></div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <h2>My Recipes</h2>
+            <div id="yourRecipes">
+
+            </div>
+        </div>
+    </main>
 </body>
 </html>
