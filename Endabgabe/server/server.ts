@@ -146,12 +146,12 @@ export namespace AbgabeEnd {
 
                 for (let i: number = 0; i < prevFav.length; i++) {
                     if (myURL.query._id == prevFav[i]._id) {
-                        delRecipeName = prevFav[i].recipeName;
+                        delRecipeName = prevFav[i].recipeName.toString();
                         prevFav.splice(i, 1);
                     }
                 }
                 dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": prevFav}});
-                _response.write(delRecipeName.toString() + "successfully deleted.");
+                _response.write(delRecipeName + "successfully deleted.");
             }
         }
 
