@@ -70,14 +70,14 @@ var AbgabeEnd;
                 console.log("Loading all recipes...");
                 let findAllCursor = dbRecipeCollection.find();
                 let resultAll = await findAllCursor.toArray();
-                console.log("All recipes found!");
+                console.log("Recipes found!");
                 _response.write(JSON.stringify(resultAll));
             }
             else if (chosenPath == "/recipesMy") {
                 console.log("Loading my recipes...");
                 let recipesMine;
                 recipesMine = await dbRecipeCollection.find({ "recipeAuthor": myURL.query.loggedUser }).toArray();
-                console.log("My recipes found!");
+                console.log("Recipes found!");
                 _response.write(JSON.stringify(recipesMine));
             }
             else if (chosenPath == "/recipeSave") {
@@ -122,18 +122,9 @@ var AbgabeEnd;
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
                 let allFavs = new Array();
                 let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser.toString() });
-                let dbRecipeCheck;
                 // to check if recipe is already fav'd
-                for (let i = 0; i < userReg.favRecipes.length; i++) {
-                    dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i] }).count(true);
-                    console.log(dbRecipeCheck);
-                    console.log([newFav][i]);
-                }
-                if (dbRecipeCheck >= 1) { // if it is, send failed msg
-                    console.log("Failed. Recipe already favorited.");
-                    _response.write("FailFav");
-                }
-                else { // if not, continue
+                let dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav] }).count(true);
+                if (dbRecipeCheck < 1) {
                     let userUpdatedReg;
                     allFavs = userReg.favRecipes;
                     if (allFavs != undefined) {
@@ -145,6 +136,10 @@ var AbgabeEnd;
                     }
                     console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
                     _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
+                }
+                else { // if not, send failed request
+                    console.log("Failed. Recipe already favorited.");
+                    _response.write("FailFav");
                 }
             }
             else if (chosenPath == "/recipeFavDel") {
