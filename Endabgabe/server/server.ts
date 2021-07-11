@@ -120,8 +120,11 @@ export namespace AbgabeEnd {
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser.toString()});
+                let dbRecipeCheck: number
                 // to check if recipe is already fav'd
-                let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav]}).count(true);
+                for (let i: number = 0; i < userReg.favRecipes.length; i++){
+                    dbRecipeCheck = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i]}).count(true);
+                }
                 if (dbRecipeCheck < 1) {
                     let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
                     allFavs = userReg.favRecipes;

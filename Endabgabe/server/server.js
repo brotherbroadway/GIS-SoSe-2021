@@ -122,8 +122,11 @@ var AbgabeEnd;
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
                 let allFavs = new Array();
                 let userReg = await dbUserCollection.findOne({ "username": myURL.query.crntUser.toString() });
+                let dbRecipeCheck;
                 // to check if recipe is already fav'd
-                let dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav] }).count(true);
+                for (let i = 0; i < userReg.favRecipes.length; i++) {
+                    dbRecipeCheck = await dbUserCollection.find({ "username": myURL.query.crntUser.toString(), "favRecipes": [newFav][i] }).count(true);
+                }
                 if (dbRecipeCheck < 1) {
                     let userUpdatedReg;
                     allFavs = userReg.favRecipes;
