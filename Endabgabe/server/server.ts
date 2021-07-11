@@ -118,19 +118,20 @@ export namespace AbgabeEnd {
             } else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
+                let checkFav: RecipeForm = await dbUserCollection.findOne({"favRecipes": [myURL.query._id.toString()]});
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser});
                 // to check if recipe is already fav'd
-                let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [newFav]}).limit(1).count(true);
+                let dbRecipeCheck: number = await dbUserCollection.find({"username": myURL.query.crntUser.toString(), "favRecipes": [checkFav]}).limit(1).count(true);
+                console.log(newFav);
                 if (dbRecipeCheck == 1) {
+                    console.log("Failed. Recipe already favorited.");
                     _response.write("FailFav");
                 } else { // if not, adds it to user's favorite recipes
                     let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
                     allFavs = userReg.favRecipes;
                     if (allFavs != undefined) {
                         allFavs.push(newFav);
-                        console.log("Favorites of '" + userReg + "' updated!");
-    
                         userUpdatedReg = await dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": allFavs}});
                     } else {
                         userUpdatedReg = await dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": [newFav]}});
