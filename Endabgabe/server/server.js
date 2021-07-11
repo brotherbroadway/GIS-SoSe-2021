@@ -105,6 +105,18 @@ var AbgabeEnd;
                 dbRecipeCollection.findOneAndDelete({ "recipeName": myURL.query.recipeName });
                 _response.write("Recipe deleted!");
             }
+            else if (chosenPath == "/recipesAllFav") {
+                console.log("Loading your favorite recipes...");
+                let thatUser = await dbUserCollection.findOne({ "username": myURL.query.loggedUser.toString() });
+                let thoseFavs = thatUser.favRecipes;
+                console.log("User: " + thatUser.username + "| Favs: " + JSON.stringify(thoseFavs));
+                if (thoseFavs != undefined) {
+                    _response.write(JSON.stringify(thoseFavs));
+                }
+                else {
+                    _response.write("FavFail");
+                }
+            }
             else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
                 let newFav = await dbRecipeCollection.findOne({ "_id": new Mongo.ObjectId(myURL.query._id.toString()) });
@@ -120,7 +132,7 @@ var AbgabeEnd;
                 else {
                     userUpdatedReg = await dbUserCollection.findOneAndUpdate({ "username": myURL.query.crntUser }, { $set: { "favRecipes": [newFav] } });
                 }
-                console.log("User updated to: " + JSON.stringify(userUpdatedReg));
+                console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
                 _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
             }
         }

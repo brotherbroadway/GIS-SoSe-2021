@@ -105,13 +105,22 @@ export namespace AbgabeEnd {
                 console.log("Deleting recipe...");
                 dbRecipeCollection.findOneAndDelete({"recipeName": myURL.query.recipeName});
                 _response.write("Recipe deleted!");
+            } else if (chosenPath == "/recipesAllFav") {
+                console.log("Loading your favorite recipes...");
+                let thatUser: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.loggedUser.toString()});
+                let thoseFavs: RecipeForm[] = thatUser.favRecipes;
+                console.log("User: " + thatUser.username + "| Favs: " + JSON.stringify(thoseFavs));
+                if (thoseFavs != undefined) {
+                    _response.write(JSON.stringify(thoseFavs));
+                } else {
+                    _response.write("FavFail");
+                }
             } else if (chosenPath == "/recipeFav") {
                 console.log("Favoriting recipe...");
                 let newFav: RecipeForm = await dbRecipeCollection.findOne({"_id": new Mongo.ObjectId(myURL.query._id.toString())});
                 let allFavs: RecipeForm[] = new Array();
                 let userReg: UserRegForm = await dbUserCollection.findOne({"username": myURL.query.crntUser});
                 let userUpdatedReg: Mongo.FindAndModifyWriteOpResultObject <UserRegForm>;
-                
                 allFavs = userReg.favRecipes;
                 if (allFavs != undefined) {
                     allFavs.push(newFav);
@@ -121,9 +130,9 @@ export namespace AbgabeEnd {
                 } else {
                     userUpdatedReg = await dbUserCollection.findOneAndUpdate({"username": myURL.query.crntUser}, {$set: {"favRecipes": [newFav]}});
                 }
-                console.log("User updated to: " + JSON.stringify(userUpdatedReg));
-                _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.")
-            }
+                console.log("Entire user data: " + JSON.stringify(userUpdatedReg));
+                _response.write("User '" + myURL.query.crntUser + "' added recipe '" + newFav.recipeName + "' added to their favorites.");
+            } 
         }
 
         // _response.write(_request.url); // what gets returned for the response to the request
